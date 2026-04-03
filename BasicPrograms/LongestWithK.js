@@ -17,5 +17,3 @@ for(let i=0;i<value.length;i++){
         maxLength = Math.max(maxLength, i - left + 1);
         
     }
-
-console.log(maxLength);
