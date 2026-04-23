@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efd4fbea-d477-4672-853f-5a721ac37027" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/02-data-structures/MoveZeroes.js" beforeDir="false" afterPath="$PROJECT_DIR$/03-algorithms/two-pointers/moveZeroes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/02-data-structures/RemoveDuplicates.js" beforeDir="false" afterPath="$PROJECT_DIR$/03-algorithms/two-pointers/removeDuplicates.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-algorithms/two-pointers/twoSum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +60,7 @@
     &quot;Node.js.maximumNumber.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.removeDuplicates.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.reverseVowels.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.twoSum.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -84,13 +85,7 @@
       <recent name="$PROJECT_DIR$/BasicPrograms/twoPointers" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.removeDuplicates.js">
-    <configuration name="RemoveDuplicates.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/BasicPrograms/RemoveDuplicates.js" working-dir="$PROJECT_DIR$/BasicPrograms">
-      <method v="2" />
-    </configuration>
-    <configuration name="RemoveDuplicationAtmost.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/BasicPrograms/RemoveDuplicationAtmost.js" working-dir="$PROJECT_DIR$/BasicPrograms">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Node.js.twoSum.js">
     <configuration name="RemoveElementValue.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/BasicPrograms/RemoveElementValue.js" working-dir="$PROJECT_DIR$/BasicPrograms">
       <method v="2" />
     </configuration>
@@ -103,13 +98,16 @@
     <configuration name="reverseVowels.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/BasicPrograms/twoPointers/reverseVowels.js" working-dir="$PROJECT_DIR$/BasicPrograms">
       <method v="2" />
     </configuration>
+    <configuration name="twoSum.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/03-algorithms/two-pointers/twoSum.js" working-dir="$PROJECT_DIR$/03-algorithms/two-pointers">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.twoSum.js" />
         <item itemvalue="Node.js.removeDuplicates.js" />
         <item itemvalue="Node.js.reverseVowels.js" />
         <item itemvalue="Node.js.maximumNumber.js" />
         <item itemvalue="Node.js.RemoveElementValue.js" />
-        <item itemvalue="Node.js.RemoveDuplicationAtmost.js" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +130,7 @@
       <workItem from="1776572126177" duration="6907000" />
       <workItem from="1776923985474" duration="488000" />
       <workItem from="1776924495565" duration="2263000" />
-      <workItem from="1776933217895" duration="2350000" />
+      <workItem from="1776933217895" duration="3974000" />
     </task>
     <servers />
   </component>
