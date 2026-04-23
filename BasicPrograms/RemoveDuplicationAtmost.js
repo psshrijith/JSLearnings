@@ -5,8 +5,9 @@ function removeDuplicatesAtmostK(nums) {
 
     for (let j = 2; j < nums.length; j++) {
         if (nums[j] !== nums[i-2]) {
-            i++;
             nums[i] = nums[j];
+            i++;
+            
         }
 
     }
