@@ -1,4 +1,4 @@
-function RemoveElementValue(array, val){
+function RemoveElement(array, val){
     let i=0;
     for(let j=0;j<array.length;j++){
         if(array[j] !== val){
@@ -9,4 +9,4 @@ function RemoveElementValue(array, val){
     return i;
 }
 
-console.log(RemoveElementValue([3,2,2,3], 3))
+console.log(RemoveElement([3,2,2,3], 3))
