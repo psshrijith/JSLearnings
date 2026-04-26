@@ -4,7 +4,6 @@ function removeDuplicates(arr){
         if(arr[j] !== arr[i]){
             i++;
             arr[i] = arr[j];
-
         }
     }
     return i+1;
