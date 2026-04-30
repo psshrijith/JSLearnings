@@ -4,7 +4,7 @@ let maxLength = 0;
 let left = 0;
 
 function LongestSubstring(s){
-    for(let i=0;i<a.length;i++){
+    for(let i=0;i<s.length;i++){
         if(set.has(a[i])){
             set.delete(a[left]);
             left++;
