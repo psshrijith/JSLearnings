@@ -12,6 +12,7 @@ function LongestSubstring(s){
         set.add(a[i]);
         maxLength = Math.max(maxLength, set.size);
     }
+    
     return maxLength;
 }
 
