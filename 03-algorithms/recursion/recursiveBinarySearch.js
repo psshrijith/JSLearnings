@@ -13,4 +13,4 @@ function recursiveBinarySearch(array,target, left=0, right=arr.length-1){
 }
 
 const arr = [1, 3, 5, 7, 9, 11];
-console.log(recursiveBinarySearch(arr, 7)); // 3
+console.log(recursiveBinarySearch(arr, 7));
