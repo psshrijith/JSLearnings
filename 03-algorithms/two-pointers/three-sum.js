@@ -20,9 +20,9 @@ function ThreeSum(nums){
             else{
                 right--;
             }         
+        }
     }
-}
-    return result;
+return result;
 }
 
 console.log(ThreeSum([-1,0,1,2,-1,-4]));
