@@ -11,4 +11,4 @@ function maximumSubArray() {
     return res;
 }
 
-console.log(maximumSubArray())
+console.log(maximumSubArray());
