@@ -23,6 +23,6 @@ function anagram(str1, str2) {
     return true;
 }
 
-// anagram('cinema', 'iceman');
+console.log(anagram('cinema', 'iceman'));
 console.log(anagram('anagram', 'nagaram'));
-// anagram('abc', 'cba');
+console.log(anagram('abc', 'cba'));
