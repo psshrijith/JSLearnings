@@ -26,3 +26,8 @@ function squares(arr1, arr2) {
 
   return true;
 }
+
+squares([1, 2, 3], [1, 4, 9]);
+squares([1, 2, 3], [1, 4, 9, 9]);
+squares([1, 2, 3], [1, 4]);
+squares([1, 2, 1], [4, 1, 1]);
