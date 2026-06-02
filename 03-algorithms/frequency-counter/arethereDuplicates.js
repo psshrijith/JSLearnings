@@ -1,16 +1,16 @@
-// function arethereDuplicates(...arr) {
-//     console.log(arr);
-//     let frequencyCounter = {};
+function arethereDuplicates(...arr) {
+    console.log(arr);
+    let frequencyCounter = {};
 
-//     for(let val of arr){
-//         frequencyCounter[val] = (frequencyCounter[val] || 0) + 1;
-//     }
+    for(let val of arr){
+        frequencyCounter[val] = (frequencyCounter[val] || 0) + 1;
+    }
 
-//     for(let key in frequencyCounter){
-//         if(frequencyCounter[key] > 1) return true;
-//     }
-//     return false;
-// }
+    for(let key in frequencyCounter){
+        if(frequencyCounter[key] > 1) return true;
+    }
+    return false;
+}
 
 // using two pointers
 function arethereDuplicates(...arr) {
