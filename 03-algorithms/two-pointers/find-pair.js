@@ -1,13 +1,19 @@
-function findPair(arr, target){
-    const set = new Set();
+function findPair(arr, target) {
 
-    for(let i = 0; i < arr.length; i++){
-        set.add(arr[i]);
+    const frequency = {};
+    
+    for (let num of arr) {
+        frequency[num] = (frequency[num] || 0) + 1;
     }
 
-    for(let i = 0; i < arr.length; i++){
-        const complement = arr[i]- target;
-        if(set.has(complement)){
+    for (let num of arr) {
+        const complement = num - target;
+        if (complement in frequency) {
+            if (frequency[complement] > 1) {
+                return true;
+            }  
+        }
+        else{
             return true;
         }
     }
@@ -24,4 +30,4 @@ console.log(findPair([-4,4], -8)); // true
 console.log(findPair([-4,4], 8)); // true
 console.log(findPair([1,3,4,6],-2)); // true
 console.log(findPair([0,1,3,4,6],-2)); // true
-console.log(findPair([1,2,3], 0)); // false
+ console.log(findPair([1,2,3], 0)); // false
