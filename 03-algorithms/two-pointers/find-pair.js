@@ -8,14 +8,14 @@ function findPair(arr, target) {
 
     for (let num of arr) {
         const complement = num - target;
-        if (complement in frequency) {
+        if (complement in frequency ) {
             if (complement === num) {
-            if (frequency[complement] > 1) {
+                if (frequency[complement] > 1) {
+                    return true;
+                }  
+            }
+            else{
                 return true;
-            }  
-        }
-        else{
-            return true;
             }
         }
     }
