@@ -17,6 +17,8 @@ console.log(maximumSumSubarray([1,2,5,2,8,1,5], 4));
 function maximumSumSubarray(arr, k) {
     let sum = 0;
     let windowSum = 0;
+
+    if (k > arr.length) return null;
     for(let i = 0; i < k; i++){
         sum += arr[i];
     }
