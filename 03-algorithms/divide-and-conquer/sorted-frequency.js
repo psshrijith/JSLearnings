@@ -8,18 +8,18 @@ function sortedFrequency(arr, num) {
     let right = arr.length - 1;
     let firstOccurrence = -1;
 
-    while(left <= right) {
-        const mid = Math.floor((left + right) / 2);
-        if(arr[mid] === num) {
-            firstOccurrence = mid;
-            right = mid - 1;
-        } else if(arr[mid] < num) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
+        while(left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            if(arr[mid] === num) {
+                firstOccurrence = mid;
+                right = mid - 1;
+            } else if(arr[mid] < num) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
-    }
-    return firstOccurrence;
+            return firstOccurrence;
     }
 
     function findLastOccurrence() {
@@ -27,19 +27,19 @@ function sortedFrequency(arr, num) {
     let right = arr.length - 1;
     let lastOccurrence = -1;
 
-    while(left <= right) {
-        const mid = Math.floor((left + right) / 2);
-        if(arr[mid] === num) {
-            lastOccurrence = mid;
-            left = mid + 1;
-        } else if(arr[mid] < num) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
+        while(left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            if(arr[mid] === num) {
+                lastOccurrence = mid;
+                left = mid + 1;
+            } else if(arr[mid] < num) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
-    }
-        return lastOccurrence;
-    }
+            return lastOccurrence;
+        }
 
     firstOccurrence = findFirstOccurrence();
     if(firstOccurrence === -1) return -1;
