@@ -19,7 +19,7 @@ function sortedFrequency(arr, num) {
                 right = mid - 1;
             }
         }
-            return firstOccurrence;
+        return firstOccurrence;
     }
 
     function findLastOccurrence() {
@@ -39,7 +39,7 @@ function sortedFrequency(arr, num) {
             }
         }
             return lastOccurrence;
-        }
+    }
 
     firstOccurrence = findFirstOccurrence();
     if(firstOccurrence === -1) return -1;
