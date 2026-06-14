@@ -7,8 +7,7 @@ function flattenArray(arr) {
             console.log(arr);
             result = result.concat(flattenArray(arr[i]));
         } else {
-            result.push(arr[i]);
-            console.log("in bte secod loop")
+            result.push(arr[i]);gi
         }
     }
 
