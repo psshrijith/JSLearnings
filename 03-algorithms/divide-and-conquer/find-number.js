@@ -1,10 +1,12 @@
-function findNumber(arr, num) {
+function findRotatedIndex(arr, num) {
+    let left = 0;
+    let right = arr.length - 1;
 
     while(left<=right){
         let mid = Math.floor((left+right)/2);
 
         if(arr[mid] === num) {
-            return true;
+            return mid;
         }
 
         if(arr[left] <= arr[mid]) {
@@ -22,7 +24,7 @@ function findNumber(arr, num) {
             }
         }
     }
-    return false;
+    return -1;
     }
 
-console.log(findNumber([4,5,6,7,0,1,2], 0));
+console.log(findRotatedIndex([3,4,1,2],4));
