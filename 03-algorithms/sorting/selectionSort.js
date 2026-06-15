@@ -20,4 +20,4 @@ function selectionSort(arr){
 }
 
 const arr = [5, 15, 38, 19, 12, 11, 22];
-console.log(selectionSort(arr)); // Output: [11, 12, 22, 25, 64]
+console.log(selectionSort(arr));
