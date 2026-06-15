@@ -28,3 +28,14 @@ function capitalizeFirst(arr) {
 }
 
 console.log(capitalizeFirst(['car', 'taco', 'banana'])); // Output: ['Car', 'Taco', 'Banana']
+
+function capitalizeFirst(arr, index = 0) {
+    if (index >= arr.length) {
+        return [];
+    }
+
+    let first = arr[index].charAt(0).toUpperCase() + arr[index].slice(1);
+    return [first].concat(capitalizeFirst(arr, index + 1));
+}
+
+console.log(capitalizeFirst(['car', 'taco', 'banana'])); // Output: ['Car', 'Taco', 'Banana']
