@@ -9,11 +9,9 @@ function selectionSort(arr){
         }
 
         if(min !== i) {
-
-        let temp = arr[i];
-        arr[i] = arr[min];
-        console.log("i", i, "min", min);
-        arr[min] = temp;
+            let temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
         }
     }
     return arr;
