@@ -3,9 +3,9 @@ function merge(left, right){
     let j = 0;
     let result = [];
 
-    while(i<left.length && j<right.length){
+    while(i < left.length && j < right.length){
 
-        if(left[i]< right[j]){
+        if(left[i] < right[j]){
             result.push(left[i]);
             i++;
         }
@@ -15,12 +15,12 @@ function merge(left, right){
         }
     }
 
-    while(i<left.length){
+    while(i < left.length){
         result.push(left[i]);
         i++;
     }
 
-    while(j<right.length){
+    while(j < right.length){
         result.push(right[j]);
         j++;
     }
@@ -29,7 +29,7 @@ function merge(left, right){
 }
 
 function recursion(arr){
-    if(arr.length <=1 ) return arr;
+    if(arr.length <= 1) return arr;
     let mid = Math.floor(arr.length/2);
 
     let left = arr.slice(0, mid);
