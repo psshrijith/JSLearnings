@@ -24,7 +24,6 @@ function merge(left, right){
         result.push(right[j]);
         j++;
     }
-
     return result;
 }
 
