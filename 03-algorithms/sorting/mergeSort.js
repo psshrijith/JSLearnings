@@ -27,18 +27,18 @@ function merge(left, right){
     return result;
 }
 
-function recursion(arr){
+function mergeSort(arr){
     if(arr.length <= 1) return arr;
     let mid = Math.floor(arr.length/2);
 
     let left = arr.slice(0, mid);
     let right = arr.slice(mid);
 
-    let leftresult = recursion(left);
-    let rightresult = recursion(right);
+    let leftresult = mergeSort(left);
+    let rightresult = mergeSort(right);
 
     return merge(leftresult, rightresult);
 }
 
 const array = [3,1,2,4,5,9,8];
-console.log(recursion(array));
+console.log(mergeSort(array));
