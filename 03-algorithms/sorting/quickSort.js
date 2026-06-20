@@ -14,8 +14,8 @@ function sorter(arr){
         j++;
     }
     let temp1 = arr[i+1];
+    arr[i+1] = arr[j];
     arr[j] = temp1;
-    arr[i+1] = pivot;
 
     return arr;
 
