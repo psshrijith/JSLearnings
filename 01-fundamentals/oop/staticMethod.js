@@ -7,7 +7,12 @@ class Student{
     name(){
         return this.firstName+this.lastName;
     }
+
+    static method(){
+        return "hello";
+    }
 }
 
 const obj1 = new Student("ram", "gopal");
 console.log(obj1.name());
+console.log(Student.method());
