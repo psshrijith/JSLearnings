@@ -27,4 +27,17 @@ class SingleLinkedList{
         return this;
     }
 
+    pop(value){
+        this.tail = this.head;
+        this.tail.next =  this.head.next;
+        this.length--;
+        return this;
+    }
+
 }
+
+const list = new SingleLinkedList();
+list.push(20);
+list.push(30);
+list.pop(30);
+console.log(list);
