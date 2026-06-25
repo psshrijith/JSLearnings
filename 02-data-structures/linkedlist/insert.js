@@ -40,4 +40,3 @@ const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
 list.pop(30);
-console.log(list);
