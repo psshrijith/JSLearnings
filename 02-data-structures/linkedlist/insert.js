@@ -5,7 +5,7 @@ class Node{
     }
 }
 
-class SingleLinkedList{
+class SingleLinkedList {
     constructor(){
         this.head = null;
         this.tail = null;
@@ -33,7 +33,6 @@ class SingleLinkedList{
         this.length--;
         return this;
     }
-
 }
 
 const list = new SingleLinkedList();
