@@ -27,7 +27,7 @@ class SingleLinkedList {
         return this;
     }
 
-    pop(value){
+    pop(value){ 
         this.tail = this.head;
         this.tail.next =  this.head.next;
         this.length--;
