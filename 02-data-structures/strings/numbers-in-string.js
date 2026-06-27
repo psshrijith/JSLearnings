@@ -1,6 +1,6 @@
-let s = "sentence23"
+const s = "sentence23"
 
-for(let j of s){
+for(const j of s){
     if(j>='0' && j<='9'){
         console.log("It is a number")
     }

@@ -1,7 +1,7 @@
-let x = "s"
+const x = "s"
 console.log(x-4)
 
-let y = true
+const y = true
 console.log("y"+y)
 
 console.log(!"false")

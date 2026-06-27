@@ -1,9 +1,9 @@
-let value = "eceba";
-let k=2;
-let map = new Map();
+const value = "eceba";
+const k=2;
+const map = new Map();
 let maxLength = 0;
 let left = 0;
-let string = "";
+const string = "";
 
 for(let i=0;i<value.length;i++){
     map.set(value[i], (map.get(value[i]) || 0) + 1);

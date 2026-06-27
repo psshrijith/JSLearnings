@@ -10,7 +10,7 @@ function digitCount(num){
 function maxDigitCount(arr){
     let max = 0;
 
-    for(let num of arr){
+    for(const num of arr){
         max = Math.max(max, digitCount(num));
     }
     return max;
@@ -29,12 +29,12 @@ function radixSort(nums){
 
 function radixSortPositives(nums){
     if(nums.length === 0) return nums;
-    let maxDigit = maxDigitCount(nums);
+    const maxDigit = maxDigitCount(nums);
     for(let i=0;i<maxDigit;i++){
-        let digitBucket = Array.from({length:10}, () => []);
+        const digitBucket = Array.from({length:10}, () => []);
 
         for(let k=0;k<nums.length;k++){
-            let index = getDigit(nums[k], i);
+            const index = getDigit(nums[k], i);
             digitBucket[index].push(nums[k]);
         }
         nums = [].concat(...digitBucket);

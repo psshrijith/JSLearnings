@@ -5,4 +5,4 @@ function checkSpam(str){
     return false;
 }
 
-console.log(checkSpan("buy xXXXX now"))
+console.log(checkSpam("buy xXXXX now"))

@@ -1,8 +1,8 @@
 class upperCaseConversion{
     upperCov(str){
-        let str1 = str.split(" ")
+        const str1 = str.split(" ")
         let nstr = ""
-        for(let j of str1){            
+        for(const j of str1){            
             nstr += j[0].toUpperCase()+j.substr(1)
             nstr += " "
         }
@@ -10,7 +10,7 @@ class upperCaseConversion{
     }
 }
 
-let obj = new upperCaseConversion();
+const obj = new upperCaseConversion();
 obj.upperCov("i love programming")
 
 

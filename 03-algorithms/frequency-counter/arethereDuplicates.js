@@ -13,7 +13,7 @@ function arethereDuplicates(...arr) {
 }
 
 // using two pointers
-function arethereDuplicates(...arr) {
+function arethereDuplicatesTwoPointers(...arr) {
     arr.sort();
     let left = 0;
     let right = 1;

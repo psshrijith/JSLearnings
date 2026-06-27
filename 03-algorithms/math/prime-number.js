@@ -2,13 +2,13 @@ class primeNumber{
     primeNum(N){
         let count = 0;
         for(let i=2;i<=N;i++){
-            if(N%i==0){
+            if(N%i===0){
                 count++;
             }
         }
-        return count==1;
+        return count===1;
     }
 }
 
-let obj = new primeNumber();
+const obj = new primeNumber();
 console.log(obj.primeNum(13));

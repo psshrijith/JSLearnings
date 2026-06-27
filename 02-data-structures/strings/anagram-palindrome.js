@@ -5,7 +5,7 @@ class anagram_palindrome{
     count = 0;
 
     method(){
-        for(let char of this.ch){
+        for(const char of this.ch){
             if(!this.map.has(char)){
                 this.map.set(char,1)
             }
@@ -14,12 +14,12 @@ class anagram_palindrome{
             }
         }
 
-        for(let value of this.map.values()){
+        for(const value of this.map.values()){
             if(value%2!==0) this.count++
         }
         return this.count>1;
     }
 }
 
-let v = new anagram_palindrome();
+const v = new anagram_palindrome();
 console.log(v.method())

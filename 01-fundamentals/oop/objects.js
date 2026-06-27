@@ -1,4 +1,4 @@
-let alien = {
+const alien = {
     "name" : "Test",
     "age" : 25,
     "Laptop" : {
@@ -8,6 +8,6 @@ let alien = {
 }
 
 
-for(let key in alien){
+for(const key in alien){
     console.log(key, alien[key])
 }

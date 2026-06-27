@@ -2,7 +2,7 @@ function recursiveBinarySearch(array,target, left=0, right=arr.length-1){
     if(left > right) {
         return -1
     }
-    let mid = Math.floor((left + right) / 2);
+    const mid = Math.floor((left + right) / 2);
     if (array[mid] === target) {
         return mid;
     }

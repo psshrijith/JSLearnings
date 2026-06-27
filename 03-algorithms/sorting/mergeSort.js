@@ -1,7 +1,7 @@
 function merge(left, right){
     let i = 0;
     let j = 0;
-    let result = [];
+    const result = [];
 
     while(i < left.length && j < right.length){
 
@@ -29,13 +29,13 @@ function merge(left, right){
 
 function mergeSort(arr){
     if(arr.length <= 1) return arr;
-    let mid = Math.floor(arr.length/2);
+    const mid = Math.floor(arr.length/2);
 
-    let left = arr.slice(0, mid);
-    let right = arr.slice(mid);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
 
-    let leftresult = mergeSort(left);
-    let rightresult = mergeSort(right);
+    const leftresult = mergeSort(left);
+    const rightresult = mergeSort(right);
 
     return merge(leftresult, rightresult);
 }

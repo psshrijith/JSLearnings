@@ -4,5 +4,5 @@ class implementStrStr{
     }
 }
 
-let obj = new implementStrStr();
+const obj = new implementStrStr();
 console.log(obj.method("Iam"));

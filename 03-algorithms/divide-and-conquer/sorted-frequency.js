@@ -1,6 +1,6 @@
 function sortedFrequency(arr, num) {
-    let left = 0;
-    let right = arr.length - 1;
+    const left = 0;
+    const right = arr.length - 1;
     let firstOccurrence = -1;
     
     function findFirstOccurrence() {

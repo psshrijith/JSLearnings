@@ -9,7 +9,7 @@ function selectionSort(arr){
         }
 
         if(min !== i) {
-            let temp = arr[i];
+            const temp = arr[i];
             arr[i] = arr[min];
             arr[min] = temp;
         }

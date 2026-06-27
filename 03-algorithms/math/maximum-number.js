@@ -11,6 +11,6 @@ function maximumNumber(array){
 }
 
 
-let array = [1,2,3,4]
+const array = [1,2,3,4]
 
 console.log(maximumNumber(array))

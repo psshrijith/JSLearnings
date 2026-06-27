@@ -16,5 +16,5 @@ method (str1,str2){
 }
 }
 
-let obj = new uncommonCharacters()
+const obj = new uncommonCharacters()
 obj.method("geeksforgeeks","geeksquiz")

@@ -6,7 +6,7 @@
 
 
 function pattern(n){
-    g = n;
+    let g = n;
     for(let i=n;i>=1;i--){
         for(let j=n;j>=1;j--){
             for(let k=0;k<g;k++){

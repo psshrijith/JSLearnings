@@ -10,5 +10,5 @@ class A{
     }
 }
 
-let a = new A(56,56);
+const a = new A(56,56);
 a.method()

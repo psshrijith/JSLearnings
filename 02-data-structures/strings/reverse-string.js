@@ -1,4 +1,4 @@
-let testString = "test"
+const testString = "test"
 let reversedString = ""
 
 for(let i = testString.length-1;i>=0;i--){

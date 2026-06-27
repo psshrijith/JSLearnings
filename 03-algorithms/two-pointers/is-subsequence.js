@@ -1,7 +1,7 @@
 function isSubsequence(message, string) {
     let left = 0;
     let result = "";
-    for(let j of string){
+    for(const j of string){
         if(j === message[left]){
             result += j;
             left++;

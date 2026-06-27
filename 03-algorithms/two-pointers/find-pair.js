@@ -2,11 +2,11 @@ function findPair(arr, target) {
 
     const frequency = {};
     
-    for (let num of arr) {
+    for (const num of arr) {
         frequency[num] = (frequency[num] || 0) + 1;
     }
 
-    for (let num of arr) {
+    for (const num of arr) {
         const complement = num - target;
         if (complement in frequency ) {
             if (complement === num) {

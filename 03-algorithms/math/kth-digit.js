@@ -12,10 +12,11 @@ Explanation:
 
 class Solution{
     kthDigit(A, B, K){
-        let result= A**B;
-        let resultS = result.toString();
+        const result= A**B;
+        const resultS = result.toString();
         return resultS[resultS.length-K];
     }
 }
 
- kDigit(3,3,1);
+const kDigit = new Solution();
+console.log(kDigit.kthDigit(3,3,1));

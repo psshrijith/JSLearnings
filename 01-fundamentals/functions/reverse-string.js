@@ -1,4 +1,4 @@
-let actualText = "madam";
+const actualText = "madam";
 let reversedText = "";
 
 for(let i=actualText.length-1;i>=0;i--){

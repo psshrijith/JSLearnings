@@ -16,14 +16,14 @@ class pairsOfPrime{
         for(let i=2;i<N;i++){
             count = 0;
             for(let j=2;j<=i;j++){
-                if(i%j==0){
+                if(i%j===0){
                     count++;
             }
         }
-        if(count==1) this.arr.push(i);
+        if(count===1) this.arr.push(i);
     }
     }
 }
 
-let obj = new pairsOfPrime();
+const obj = new pairsOfPrime();
 obj.pairOf(8)

@@ -1,15 +1,15 @@
-let string = "dvdf";
-let set = new Set();
+const string = "dvdf";
+const set = new Set();
 let maxLength = 0;
 let left = 0;
 
 function LongestSubstring(s){
     for(let i=0;i<s.length;i++){
-        if(set.has(a[i])){
-            set.delete(a[left]);
+        if(set.has(s[i])){
+            set.delete(s[left]);
             left++;
         }
-        set.add(a[i]);
+        set.add(s[i]);
         maxLength = Math.max(maxLength, set.size);
     }
     

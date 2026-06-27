@@ -1,6 +1,6 @@
-let b="test"
+const b="test"
 let keyValue = 0;
-var countMap = new Map();
+const countMap = new Map();
 
 for(let i=0;i<b.length;i++){
     if(!countMap.has(b[i])){

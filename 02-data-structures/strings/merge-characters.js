@@ -11,5 +11,5 @@ class mergeCharacters{
     }
 }
 
-let obj = new mergeCharacters();
+const obj = new mergeCharacters();
 obj.method("hello","w")

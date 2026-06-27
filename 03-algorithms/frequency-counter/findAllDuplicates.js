@@ -2,11 +2,11 @@ function FindAllDuplicates(nums) {
     const frequencyCounter = {};
     const duplicates = [];
 
-    for(let num of nums){
+    for(const num of nums){
         frequencyCounter[num] = (frequencyCounter[num] || 0) + 1;
     }
 
-    for(let num in frequencyCounter){
+    for(const num in frequencyCounter){
         if(frequencyCounter[num] > 1){
             duplicates.push(Number(num));
         }
@@ -23,7 +23,7 @@ function FindAllDuplicates1(nums) {
 
     const set = new Set();
     
-    for(let num of nums){
+    for(const num of nums){
         if(set.has(num)){
             duplicates.push(num);
         } else {

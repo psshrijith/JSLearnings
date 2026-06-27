@@ -5,7 +5,7 @@ function averagePair(arr, num) {
     if(arr.length === 0) return false;
 
     while(left < right){
-        let average = (arr[left] + arr[right]) / 2;
+        const average = (arr[left] + arr[right]) / 2;
 
         if(average === num) return true;
         else if(average < num) left++;

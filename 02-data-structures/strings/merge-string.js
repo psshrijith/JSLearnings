@@ -1,12 +1,12 @@
 class mergeString{
     method(str1, str2){
-        let max = Math.max(str1.length,str2.length)
+        const max = Math.max(str1.length,str2.length)
         let newStr = ""
         for(let i=0;i<max;i++){
-            if((str1[i] == undefined && str2[i]!=undefined)){
+            if((str1[i] === undefined && str2[i]!==undefined)){
                 newStr += str2.substr(i);
             }
-            else if((str1[i] != undefined && str2[i]==undefined)){
+            else if((str1[i] !== undefined && str2[i]===undefined)){
                 newStr += str1.substr(i);
                 break;
             }
@@ -18,5 +18,5 @@ class mergeString{
     }
 }
 
-let obj = new mergeString();
+const obj = new mergeString();
 obj.method("Hello","Bye")

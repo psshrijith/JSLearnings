@@ -8,7 +8,7 @@ class B extends A{
     }
 }
 
-let obj = new A();
-let obj1 = new B()
+const obj = new A();
+const obj1 = new B()
 obj1.mymethod();
 console.log(obj.a)
