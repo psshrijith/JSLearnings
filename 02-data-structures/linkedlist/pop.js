@@ -18,6 +18,13 @@ class SingleLinkedList{
         let current = this.head;
         let newtail = current;
 
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+            this.length--;
+            return current;
+        }
+
         while(current.next){
             newtail = current;
             current = current.next;
@@ -26,12 +33,6 @@ class SingleLinkedList{
         this.tail =  newtail;
         this.tail.next = null;
         this.length--;
-
-
-        if(this.length === 0){
-            this.head = null;
-            this.tail = null;
-        }
 
         return current;
     }
