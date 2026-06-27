@@ -26,9 +26,25 @@ class SingleLinkedList {
         this.length++;
         return this;
     }
+
+    shift(){
+        if(!this.head) return undefined;
+
+        let removedNode = this.head;
+        this.head = this.head.next;
+        this.length--;
+
+        if(this.length === 0){
+            this.tail = null;
+        }
+
+        return removedNode;
+
+    }
 }
 
 const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
+list.push(40);
 console.log(list);
