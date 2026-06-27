@@ -19,6 +19,8 @@ console.log(num3+2n)
 const a = true
 const b = false
 
+console.log("result", a>b);
+
 const c = 2>3
 console.log(c)
 

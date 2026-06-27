@@ -1,9 +1,9 @@
 const promise1 = Promise.resolve(1);
 const promise2 = Promise.resolve(2);
-const promise3 = new Promise((resolve, reject) => {
+const promise3 = new Promise((resolve) => {
   setTimeout(() => resolve(3), 1000);
 });
-const promise4 = new Promise((resolve, reject) => {
+const promise4 = new Promise((reject) => {
   setTimeout(() => reject('Error occurred'), 500);
 });
 
