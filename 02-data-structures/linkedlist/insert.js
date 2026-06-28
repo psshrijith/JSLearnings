@@ -55,6 +55,14 @@ class SingleLinkedList {
             count ++;
         }
     }
+
+    set(searchIndex, newValue){
+        let node = this.get(searchIndex);
+        if (node !== undefined){
+            node.val = newValue;
+            return node;
+        }
+    }
 }
 
 const list = new SingleLinkedList();
@@ -62,5 +70,4 @@ list.push(20);
 list.push(30);
 list.push(40);
 list.push(100);
-console.log(list.get(2));
-console.log(list);
+console.log(list.set(2, 87));
