@@ -206,17 +206,60 @@
 
 ---
 
-## 📅 Weekly Schedule
+## 📅 Weekly Schedule & Daily Targets
 
-| Day | Time | Focus |
-|-----|------|-------|
-| Mon | 1h 30m | Learn concept → implement → notes → 2 easy problems |
-| Tue | 1h 30m | New topic → code → 2 problems |
-| Wed | 1h 30m | New topic → practice |
-| Thu | 1h 30m | New topic → practice |
-| Fri | 1h 30m | Finish week's topic → quick revision |
-| Sat | 4–5h | Revise all weekday topics → implement from memory → 5–8 problems |
-| Sun | 4–5h | Solve 8–10 problems → analyze mistakes → plan next week |
+### 🗓 Weekdays — Concept Days *(1h 30m each)*
+
+> Goal: Understand deeply, implement correctly, don't rush to problems.
+
+| Day | Daily Target | Focus |
+|-----|-------------|-------|
+| Mon | Learn 1 concept · Implement from scratch · Take notes | New topic kickoff |
+| Tue | Learn 1 concept · Code it up · Explain it back to yourself | Build on Monday |
+| Wed | Learn 1 concept · Practice implementation | Momentum |
+| Thu | Learn 1 concept · Practice implementation | Momentum |
+| Fri | Finish week's topics · Quick revision of Mon–Thu | Close the week |
+
+**Weekday Definition of Done (each day)**
+- [ ] Can you explain the concept in plain English?
+- [ ] Did you write the implementation without copy-pasting?
+- [ ] Do you know the time & space complexity?
+
+---
+
+### 🗓 Weekends — Problem Solving Days *(4–5h each)*
+
+> Goal: Apply what you learned. Volume + reflection.
+
+| Day | Target | Focus |
+|-----|--------|-------|
+| Sat | 5–8 problems | Revise all weekday topics → implement from memory → solve |
+| Sun | 8–10 problems | Pure problem solving → analyze mistakes → plan next week |
+
+**Weekend Definition of Done**
+- [ ] Implemented the week's data structure from memory (Saturday)
+- [ ] Hit the problem target for both days
+- [ ] Reviewed every wrong/slow solution — understood *why*
+- [ ] Wrote down 1–2 patterns or insights from the weekend
+
+---
+
+### 📊 Weekly Problem Target Summary
+
+| Week | Weekday Focus | Weekend Problems | Weekly Total |
+|------|--------------|-----------------|--------------|
+| 1 | Linked List Basics | 5–8 | ~5–8 |
+| 2 | Linked List Intermediate | 8 | ~8 |
+| 3 | Linked List Advanced | 10 | ~10 |
+| 4 | Stack | 8 | ~8 |
+| 5 | Queue | 8 | ~8 |
+| 6 | Hash Tables | 10 | ~10 |
+| 7–9 | Trees & Heaps | 8–10/week | ~24–30 |
+| 10–11 | Graphs | 8–10/week | ~16–20 |
+| 12–16 | Patterns | 10–15/week | ~50–75 |
+| **Total** | | | **~140–180+** |
+
+> Weekday problems (2/day × 5 days × 16 weeks) add ~160 more → well past the 250 target.
 
 ---
 
