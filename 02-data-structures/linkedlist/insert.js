@@ -85,12 +85,30 @@ class SingleLinkedList {
                 current.next = newNode;
                 newNode.next = nextNode;
                 return;
-
             }
-        }
-        
+        }   
     }
 
+    remove(index){
+        let current = this.head;
+        let nextNode = current;
+        let count = 0;
+
+        while(current){
+            current = nextNode;
+            nextNode = current.next;
+            count++;
+
+            if(count === index){
+                current.next = nextNode.next;
+                this.length --;
+                console.log("list", list)
+                console.log(list.length)
+                return nextNode;
+            }
+        }
+
+    }
 }
 
 const list = new SingleLinkedList();
@@ -98,4 +116,7 @@ list.push(20);
 list.push(30);
 list.push(40);
 list.push(100);
-list.insertAtIndex(3, 99);
+list.push(110);
+console.log(list.remove(2));
+
+
