@@ -146,6 +146,13 @@ class SingleLinkedList {
             }
         }
     }
+
+    removeWithGet(index){
+        let receivedNode = this.get(index-1);
+        let current = receivedNode;
+        let nextNode = current.next;
+
+    }
 }
 
 const list = new SingleLinkedList();
@@ -154,6 +161,6 @@ list.push(30);
 list.push(40);
 list.push(100);
 list.push(110);
-console.log(list.remove(2));
+list.removeWithGet(3);
 
 
