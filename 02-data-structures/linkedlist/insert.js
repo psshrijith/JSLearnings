@@ -153,14 +153,26 @@ class SingleLinkedList {
         let nextNode = current.next;
 
     }
+
+    reverse(){
+        let currentNode = this.head;
+        let nextNode = this.head.next;
+
+        console.log("data", this.head.next)
+        while(currentNode){
+            let temp = nextNode.next;
+            nextNode.next = currentNode.next;
+            currentNode = nextNode;
+            nextNode = temp;
+        }
+        return list;
+    }
 }
 
 const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
 list.push(40);
-list.push(100);
-list.push(110);
-list.removeWithGet(3);
+console.log(list.reverse());
 
 
