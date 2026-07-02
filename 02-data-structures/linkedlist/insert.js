@@ -175,4 +175,3 @@ list.push(30);
 list.push(40);
 console.log(list.reverse());
 
-
