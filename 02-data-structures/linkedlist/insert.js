@@ -155,17 +155,19 @@ class SingleLinkedList {
     }
 
     reverse(){
+        let prev = null;
         let currentNode = this.head;
-        let nextNode = this.head.next;
 
-        console.log("data", this.head.next)
+        this.tail = this.head;
+
         while(currentNode){
-            let temp = nextNode;
-            nextNode.next = currentNode.next;
-            currentNode = nextNode;
-            nextNode = temp;
+            let next = currentNode.next;
+            currentNode.next = prev;
+            prev = currentNode;
+            currentNode = next;
         }
-        return list;
+        this.head = prev;
+        return this;
     }
 }
 
@@ -174,4 +176,3 @@ list.push(20);
 list.push(30);
 list.push(40);
 console.log(list.reverse());
-
