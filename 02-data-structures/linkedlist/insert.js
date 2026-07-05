@@ -160,7 +160,7 @@ class SingleLinkedList {
 
         console.log("data", this.head.next)
         while(currentNode){
-            let temp = nextNode.next;
+            let temp = nextNode;
             nextNode.next = currentNode.next;
             currentNode = nextNode;
             nextNode = temp;
