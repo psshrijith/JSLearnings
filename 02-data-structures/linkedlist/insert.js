@@ -98,21 +98,15 @@ class SingleLinkedList {
         if(index === 0){
             newNode.next = this.head;
             this.head = newNode;
-            return;
+            return this;
         }
 
-        while(current){
-            current = current.next;
-            count++;
-
-            if(count === index - 1){
-                let nextNode = current.next;
-
-                current.next = newNode;
-                newNode.next = nextNode;
-                return;
-            }
-        }   
+        let prevNode = this.get(index - 1);
+        if(prevNode){
+            newNode.next = prevNode.next;
+            prevNode.next = newNode;
+            return this;
+        }  
     }
 
     remove(index){
@@ -188,5 +182,4 @@ const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
 list.push(40);
-list.unshift(10);
-console.log(list.reverse());
+console.log(list.insertAtIndex(3, 99))
