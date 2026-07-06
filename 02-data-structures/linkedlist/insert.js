@@ -169,10 +169,24 @@ class SingleLinkedList {
         this.head = prev;
         return this;
     }
+
+    unshift(value){
+        const newNode = new Node(value);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+        } else{
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
 }
 
 const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
 list.push(40);
+list.unshift(10);
 console.log(list.reverse());
