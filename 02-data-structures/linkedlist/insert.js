@@ -142,10 +142,12 @@ class SingleLinkedList {
     }
 
     removeWithGet(index){
-        let receivedNode = this.get(index-1);
-        let current = receivedNode;
-        let nextNode = current.next;
-
+        let previousNode = this.get(index - 1);
+        if (!previousNode) return undefined;
+        let nextNode = previousNode.next;
+        previousNode.next = nextNode.next;
+        this.length--;
+        return this;
     }
 
     reverse(){
@@ -182,4 +184,4 @@ const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
 list.push(40);
-console.log(list.insertAtIndex(3, 99))
+console.log(list.removeWithGet(1));
