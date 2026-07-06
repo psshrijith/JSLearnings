@@ -184,4 +184,4 @@ const list = new SingleLinkedList();
 list.push(20);
 list.push(30);
 list.push(40);
-console.log(list.removeWithGet(1));
+list.removeWithGet(1);
