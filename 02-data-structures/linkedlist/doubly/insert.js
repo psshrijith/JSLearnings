@@ -46,10 +46,25 @@ class DoublyLinkedList {
         console.log("this", this)
         return removedNode;
     }
+
+    shift(){
+
+        let removedNode = this.head;
+        let nextNode = removedNode.next;
+
+        nextNode.prev = null;
+        this.head = nextNode;
+        removedNode.next = null;
+
+        this.length--;
+        console.log("this", this);
+        console.log("removedNode", removedNode);
+        return removedNode;
+    }
 }
 
 const list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
 list.push(30);
-console.log(list.pop());
+console.log(list.shift());
