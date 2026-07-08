@@ -28,9 +28,28 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+
+    pop(){
+        if(!this.head) return undefined;
+
+        let removedNode = this.tail;
+
+        if(this.length === 1){
+            this.head = null;
+            this.tail = null;
+        }else{
+            this.tail = removedNode.prev;
+            this.tail.next = null;
+            removedNode.prev = null;
+        }
+        this.length--;
+        console.log("this", this)
+        return removedNode;
+    }
 }
 
 const list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
-console.log(list.push(30));
+list.push(30);
+console.log(list.pop());
