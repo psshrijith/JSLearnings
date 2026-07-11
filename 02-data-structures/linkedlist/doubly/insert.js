@@ -68,4 +68,4 @@ const list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
 list.push(30);
-console.log(list.shift());
+list.shift();
