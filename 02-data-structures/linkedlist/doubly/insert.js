@@ -100,6 +100,27 @@ class DoublyLinkedList {
         }
         return null;
     }
+
+    insert(index, val){
+        if (index < 0 || index > this.length) return;
+        if (index === 0) {
+            return this.unshift(val);
+        }
+        if (index === this.length) {
+            return this.push(val);
+        }
+        let newNode = new Node(val);
+        let foundNode = this.get(index);
+        let previousNode = foundNode.prev;
+        if(foundNode){
+            newNode.prev = previousNode
+            newNode.next = foundNode
+        }
+        previousNode.next = newNode;
+        foundNode.prev = newNode;
+        this.length++;
+        return this;
+    }
 }
 
 
@@ -107,5 +128,4 @@ const list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
 list.push(30);
-list.push(40);
-console.log(list.set(2, 100));
+console.log(list.insert(2, 1000));
