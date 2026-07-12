@@ -58,8 +58,6 @@ class DoublyLinkedList {
         removedNode.next = null;
 
         this.length--;
-        console.log("this", this);
-        console.log("removedNode", removedNode);
         return removedNode;
     }
 }
