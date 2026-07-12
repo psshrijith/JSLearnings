@@ -91,11 +91,21 @@ class DoublyLinkedList {
         }
         return null;
     }
+
+    set(index, val){
+        let foundNode = this.get(index);
+        if(foundNode){
+            foundNode.val = val;
+            return foundNode;
+        }
+        return null;
+    }
 }
+
 
 const list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
 list.push(30);
 list.push(40);
-console.log(list.get(2));
+console.log(list.set(2, 100));
