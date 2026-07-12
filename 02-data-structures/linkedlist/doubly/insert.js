@@ -60,10 +60,25 @@ class DoublyLinkedList {
         this.length--;
         return removedNode;
     }
+
+    unshift(val){
+        const newNode = new Node(val);
+
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+        } else{
+            let oldHead = this.head;
+            newNode.next = this.head;
+            oldHead.prev = newNode;
+            this.head = newNode;
+            this.length++;
+        }
+        return this;
+    }
 }
 
 const list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
-list.push(30);
-list.shift();
+console.log(list.unshift(5));
