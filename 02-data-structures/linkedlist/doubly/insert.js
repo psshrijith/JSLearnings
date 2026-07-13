@@ -44,7 +44,6 @@ class DoublyLinkedList {
             removedNode.prev = null;
         }
         this.length--;
-        console.log("this", this)
         return removedNode;
     }
 
