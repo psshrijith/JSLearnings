@@ -47,4 +47,4 @@ class Queue{
 const queue = new Queue();
 queue.enqueue(20);
 queue.enqueue(30);
-console.log(queue.dequeue());
+queue.dequeue();
