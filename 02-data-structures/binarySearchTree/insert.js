@@ -1,20 +1,28 @@
 class Node{
     constructor(val){
         this.val = val;
-        this.right = null;
         this.left = null;
+        this.right = null;
     }
 }
 
 class BinarySearchTree{
-    constructor(val){
+    constructor(){
         this.root = null;
+    }
+
+    insert(val){
+        const newNode = new Node(val);
+        if(this.root === null){
+            this.root = newNode;
+            return this;
+        }
+
     }
 }
 
-const tree = new BinarySearchTree();
-tree.root = new Node(100);
-tree.root.right = new Node(50);
-tree.root.left = new Node(70);
+const binarySearchTree = new BinarySearchTree();
+console.log(binarySearchTree.insert(100));
+
 
 
