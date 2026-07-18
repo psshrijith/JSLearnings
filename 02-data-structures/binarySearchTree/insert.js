@@ -29,7 +29,7 @@ class BinarySearchTree{
                         current = current.left;
                     }
                 }
-                else{
+                else if(val > current.val) {
                     if(current.right === null){
                         current.right = newNode;
                         return this;
@@ -37,6 +37,9 @@ class BinarySearchTree{
                     else {
                         current = current.right;
                     }
+                }
+                else {
+                    return;
                 }
             }
         }
