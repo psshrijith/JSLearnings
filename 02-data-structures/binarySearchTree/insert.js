@@ -22,12 +22,21 @@ class BinarySearchTree{
             while(true){
                 if(val < current.val){
                     if(current.left === null){
-                        current.left = val;
+                        current.left = newNode;
                         return this;
+                    }
+                    else {
+                        current = current.left;
                     }
                 }
                 else{
-                    current = current.left;
+                    if(current.right === null){
+                        current.right = newNode;
+                        return this;
+                    }
+                    else {
+                        current = current.right;
+                    }
                 }
             }
         }
@@ -35,7 +44,11 @@ class BinarySearchTree{
 }
 
 const binarySearchTree = new BinarySearchTree();
-console.log(binarySearchTree.insert(100));
+binarySearchTree.insert(100);
+binarySearchTree.insert(120);
+binarySearchTree.insert(80);
+binarySearchTree.insert(70);
+console.log(binarySearchTree.insert(60));
 
 
 
