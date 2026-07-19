@@ -70,4 +70,4 @@ binarySearchTree.insert(100);
 binarySearchTree.insert(120);
 binarySearchTree.insert(80);
 binarySearchTree.insert(70);
-console.log(binarySearchTree.insert(60));
+binarySearchTree.insert(60);
