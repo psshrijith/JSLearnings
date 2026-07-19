@@ -22,6 +22,4 @@ async function getValue(){
         console.log(error)
     }
     
-}
-
-getValue()
+}
