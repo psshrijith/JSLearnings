@@ -22,4 +22,7 @@ async function getValue(){
         console.log(error)
     }
     
-}
+}
+
+getInfo();
+getValue();
