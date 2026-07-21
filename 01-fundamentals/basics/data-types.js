@@ -45,3 +45,5 @@ console.log(d)
 //Nan
 const e = 5/"Jimmy"
 console.log(e)
+
+
