@@ -65,6 +65,7 @@ class BinarySearchTree{
     }
 }
 
+
 const binarySearchTree = new BinarySearchTree();
 binarySearchTree.insert(100);
 binarySearchTree.insert(120);
