@@ -72,7 +72,7 @@ class BinarySearchTree{
         queue.push(this.root);
         while(queue.length){
             node = queue.shift();
-            visited.push(node);
+            visited.push(node.val);
             if (node.left) {
                 queue.push(node.left);
             }
@@ -80,6 +80,7 @@ class BinarySearchTree{
                 queue.push(node.right);
             }
         }
+        return visited;
     }
 }
 
@@ -90,3 +91,4 @@ binarySearchTree.insert(120);
 binarySearchTree.insert(80);
 binarySearchTree.insert(70);
 binarySearchTree.insert(60);
+binarySearchTree.bfs();
