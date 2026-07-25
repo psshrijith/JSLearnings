@@ -73,11 +73,9 @@ class BinarySearchTree{
         while(queue.length){
             node = queue.shift();
             visited.push(node);
-        
             if (node.left) {
                 queue.push(node.left);
             }
-
             if (node.right) {
                 queue.push(node.right);
             }
@@ -92,4 +90,3 @@ binarySearchTree.insert(120);
 binarySearchTree.insert(80);
 binarySearchTree.insert(70);
 binarySearchTree.insert(60);
-
