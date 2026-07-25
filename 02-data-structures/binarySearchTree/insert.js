@@ -64,7 +64,7 @@ class BinarySearchTree{
         return false;
     }
 
-    bfs(){
+    bfs(target){
         let queue = [];
         let visited = [];
         let node = [];
@@ -73,6 +73,7 @@ class BinarySearchTree{
         while(queue.length){
             node = queue.shift();
             visited.push(node.val);
+            if(node.val === target) return node;
             if (node.left) {
                 queue.push(node.left);
             }
@@ -91,4 +92,4 @@ binarySearchTree.insert(120);
 binarySearchTree.insert(80);
 binarySearchTree.insert(70);
 binarySearchTree.insert(60);
-binarySearchTree.bfs();
+console.log(binarySearchTree.bfs(80));
