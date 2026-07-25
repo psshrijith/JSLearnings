@@ -83,6 +83,26 @@ class BinarySearchTree{
         }
         return visited;
     }
+
+    dfsInorder(target){
+        let visited = [];
+        let leftNode, rightNode = null;
+
+        if(this.root.left) {
+            leftNode = this.root.left;
+        }
+        if(this.root.right){
+            rightNode = this.root.right;
+        }
+
+        while(leftNode || rightNode){
+            visited.push(leftNode);
+            visited.push(rightNode);
+            leftNode = leftNode.left;
+            rightNode = rightNode.right;
+        }
+        
+    }
 }
 
 
