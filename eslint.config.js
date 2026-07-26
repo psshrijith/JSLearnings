@@ -7,6 +7,11 @@ export default [
   },
   {
     languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
       globals: {
         ...globals.node,
         ...globals.browser,

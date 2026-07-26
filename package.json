@@ -4,10 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint '**/*.js' --ignore-pattern node_modules",
-    "lint:fix": "eslint '**/*.js' --ignore-pattern node_modules --fix",
+    "lint": "eslint '**/*.{js,jsx}' --ignore-pattern node_modules",
+    "lint:fix": "eslint '**/*.{js,jsx}' --ignore-pattern node_modules --fix",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "website:dev": "npm --prefix website run dev",
+    "website:build": "npm --prefix website run build",
+    "website:preview": "npm --prefix website run preview"
   },
   "devDependencies": {
     "eslint": "^9.0.0",
