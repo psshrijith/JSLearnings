@@ -25,7 +25,7 @@ This directory contains basic JavaScript concepts and fundamental programming ex
 - **Array.js** - Array operations and methods
 - **loops.js** - Different types of loops in JavaScript
 - **occurenceOfChar.js** - Character counting in strings
-- **reverseString.js** - String reversal algorithms
+- **function-reverse-string.js** - String reversal algorithms
 
 ### Asynchronous JavaScript
 - **callback.js** - Callback functions
