@@ -9,107 +9,107 @@ import {
   toTitleCase,
 } from './lesson-paths.js';
 
-function extractDescription(code) {
-  const lines = code.split(/\r?\n/);
-  const description = [];
-  let reading = false;
+/**
+ * 
+ * @param {*} code 
+ * @returns the description from the code input
+ * 
+ * const code = `
+  // DESCRIPTION: Adds two numbers
+  // Returns the sum
+  // Used in calculator
 
-  for (const line of lines) {
-    const trimmed = line.trim();
-
-    if (!reading && trimmed.startsWith('// DESCRIPTION:')) {
-      reading = true;
-      description.push(trimmed.replace('// DESCRIPTION:', '').trim());
-      continue;
-    }
-
-    if (reading) {
-      if (!trimmed.startsWith('//')) break;
-      description.push(trimmed.replace(/^\/\/\s?/, '').trim());
-      continue;
-    }
-
-    if (trimmed !== '') break;
+  function add(a, b) {
+    return a + b;
   }
+`;
+ */
+function extractDescription(code) {
+  const match = code.match(
+    /\/\/ DESCRIPTION:\s*(.*(?:\r?\n\/\/.*)*)/
+  );
 
-  return description.join('\n').trim();
+  if (!match) return "";
+
+  return match[1]
+    .replace(/^\/\/\s?/gm, "")
+    .trim();
 }
 
 async function buildLessonMetadata(rawFiles, readFile) {
-  const entries = [];
+  const items = [];
 
   for (const file of rawFiles) {
     const content = await readFile(file.fullPath, 'utf8');
     const sectionId = getSectionId(file.relative);
     const sectionLabel = getSectionLabel(sectionId);
+    const baseEntry = {
+      id: getLessonId(file.relative),
+      sectionId,
+      sectionLabel,
+      sourcePath: file.relative,
+    };
 
     if (file.type === 'section') {
-      entries.push({
-        id: getLessonId(file.relative),
-        route: getSectionRoute(sectionId),
-        title: sectionLabel,
+      items.push({
+        ...baseEntry,
         kind: 'section',
-        sectionId,
-        sectionLabel,
-        sourcePath: file.relative,
+        title: sectionLabel,
+        route: getSectionRoute(sectionId),
         content,
-        orderKey: `${SECTION_ORDER.indexOf(sectionId).toString().padStart(2, '0')}/00`,
       });
       continue;
     }
 
-    const baseName = path.basename(file.relative, '.js');
-    entries.push({
-      id: getLessonId(file.relative),
-      route: getLessonRoute(file.relative),
-      title: toTitleCase(baseName),
+    items.push({
+      ...baseEntry,
       kind: 'lesson',
-      sectionId,
-      sectionLabel,
-      sourcePath: file.relative,
+      title: toTitleCase(path.basename(file.relative, '.js')),
+      route: getLessonRoute(file.relative),
       description: extractDescription(content),
       code: content,
-      orderKey: `${SECTION_ORDER.indexOf(sectionId).toString().padStart(2, '0')}/10/${file.relative}`,
     });
   }
 
-  entries.sort((a, b) => a.orderKey.localeCompare(b.orderKey));
+  items.sort((a, b) => {
+    const sectionDiff = SECTION_ORDER.indexOf(a.sectionId) - SECTION_ORDER.indexOf(b.sectionId);
+    if (sectionDiff !== 0) return sectionDiff;
+    if (a.kind !== b.kind) return a.kind === 'section' ? -1 : 1;
+    return a.sourcePath.localeCompare(b.sourcePath);
+  });
+
+  const lessons = items.map((item, index) => {
+    const prev = items[index - 1];
+    const next = items[index + 1];
+
+    return {
+      ...item,
+      prev: prev ? { id: prev.id, title: prev.title, route: prev.route } : null,
+      next: next ? { id: next.id, title: next.title, route: next.route } : null,
+    };
+  });
 
   const bySection = SECTION_ORDER.map((sectionId) => {
-    const lessons = entries.filter((entry) => entry.sectionId === sectionId);
+    const sectionLessons = lessons.filter((item) => item.sectionId === sectionId);
+
+    if (sectionLessons.length === 0) {
+      return null;
+    }
+
     return {
       id: sectionId,
       title: getSectionLabel(sectionId),
       route: getSectionRoute(sectionId),
-      count: lessons.length,
-      lessons: lessons.map((lesson) => ({
-        id: lesson.id,
-        title: lesson.title,
-        route: lesson.route,
-        kind: lesson.kind,
-        sourcePath: lesson.sourcePath,
+      count: sectionLessons.length,
+      lessons: sectionLessons.map(({ id, title, route, kind, sourcePath }) => ({
+        id,
+        title,
+        route,
+        kind,
+        sourcePath,
       })),
     };
-  }).filter((section) => section.count > 0);
-
-  const orderedLessons = entries.filter(
-    (entry) => entry.kind === 'section' || entry.kind === 'lesson',
-  );
-
-  for (let i = 0; i < orderedLessons.length; i++) {
-    const current = orderedLessons[i];
-    const prev = orderedLessons[i - 1];
-    const next = orderedLessons[i + 1];
-
-    current.prev = prev ? { id: prev.id, title: prev.title, route: prev.route } : null;
-    current.next = next ? { id: next.id, title: next.title, route: next.route } : null;
-  }
-
-  const lessons = orderedLessons.map((lesson) => {
-    const copied = { ...lesson };
-    delete copied.orderKey;
-    return copied;
-  });
+  }).filter(Boolean);
 
   return {
     generatedAt: new Date().toISOString(),
