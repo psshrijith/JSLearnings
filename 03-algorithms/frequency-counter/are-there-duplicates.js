@@ -1,12 +1,12 @@
 function arethereDuplicates(...arr) {
   console.log(arr);
-  let frequencyCounter = {};
+  const frequencyCounter = {};
 
-  for (let val of arr) {
+  for (const val of arr) {
     frequencyCounter[val] = (frequencyCounter[val] || 0) + 1;
   }
 
-  for (let key in frequencyCounter) {
+  for (const key in frequencyCounter) {
     if (frequencyCounter[key] > 1) return true;
   }
   return false;
@@ -32,3 +32,4 @@ function arethereDuplicatesTwoPointers(...arr) {
 console.log(arethereDuplicates(1, 2, 3));
 console.log(arethereDuplicates(1, 2, 2));
 console.log(arethereDuplicates('a', 'b', 'c', 'a'));
+console.log(arethereDuplicatesTwoPointers(1, 2, 2));

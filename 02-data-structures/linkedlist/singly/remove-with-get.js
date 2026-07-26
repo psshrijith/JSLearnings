@@ -6,3 +6,6 @@ class SingleLinkedList {
 
   removeWithGet() {}
 }
+
+const list = new SingleLinkedList();
+console.log(list);

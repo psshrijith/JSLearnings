@@ -1,4 +1,10 @@
 class SingleLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
   unshift(value) {
     const newNode = new Node(value);
     if (!this.head) {
@@ -13,3 +19,6 @@ class SingleLinkedList {
     return this;
   }
 }
+
+const list = new SingleLinkedList();
+console.log(list);

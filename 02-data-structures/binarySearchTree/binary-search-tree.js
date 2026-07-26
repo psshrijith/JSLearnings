@@ -59,8 +59,8 @@ class BinarySearchTree {
   }
 
   bfs(target) {
-    let queue = [];
-    let visited = [];
+    const queue = [];
+    const visited = [];
     let node = [];
 
     queue.push(this.root);
@@ -79,8 +79,8 @@ class BinarySearchTree {
   }
 
   dfsInorder() {
-    let visited = [];
-    let stack = [];
+    const visited = [];
+    const stack = [];
     let current = this.root;
 
     while (current || stack.length) {

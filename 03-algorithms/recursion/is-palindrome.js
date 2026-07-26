@@ -1,6 +1,5 @@
 function reverseString(str) {
   let str2 = '';
-  const str3 = '';
   if (str.length === 0) {
     return '';
   }

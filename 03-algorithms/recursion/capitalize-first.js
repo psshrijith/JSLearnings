@@ -1,5 +1,5 @@
 function capitalizeFirstIterative(arr) {
-  let result = [];
+  const result = [];
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -16,7 +16,7 @@ function capitalizeFirstIterative(arr) {
 console.log(capitalizeFirstIterative(['car', 'taco', 'banana'])); // Output: ['Car', 'Taco', 'Banana']
 
 function capitalizeFirstRecursive(arr) {
-  let result = [];
+  const result = [];
 
   if (arr.length === 0) {
     return result;

@@ -1,4 +1,4 @@
-function startCoffeeMachine(callback) {
+function startCoffeeMachine() {
   return new Promise((resolve) => {
     console.log('Starting the coffee Machine');
     setTimeout(function () {
@@ -8,7 +8,7 @@ function startCoffeeMachine(callback) {
   });
 }
 
-function grindCoffeeBeans(callback) {
+function grindCoffeeBeans() {
   return new Promise((resolve) => {
     console.log('Grinding coffee beans');
     setTimeout(function () {
@@ -18,7 +18,7 @@ function grindCoffeeBeans(callback) {
   });
 }
 
-function boilWater(callback) {
+function boilWater() {
   return new Promise((resolve) => {
     console.log('Boiling water');
     setTimeout(function () {
@@ -28,10 +28,8 @@ function boilWater(callback) {
   });
 }
 
-startCoffeeMachine((coffeeMachineStatus) => {
-  console.log(coffeeMachineStatus);
-  return grindCoffeeBeans();
-})
+startCoffeeMachine()
+  .then(() => grindCoffeeBeans())
   .then((groundCoffee) => {
     console.log(groundCoffee);
     return boilWater();

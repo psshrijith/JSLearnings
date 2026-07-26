@@ -55,7 +55,7 @@ class SingleLinkedList {
   shift() {
     if (!this.head) return undefined;
 
-    let removedNode = this.head;
+    const removedNode = this.head;
     this.head = this.head.next;
     this.length--;
 
@@ -80,7 +80,7 @@ class SingleLinkedList {
   }
 
   set(searchIndex, newValue) {
-    let node = this.get(searchIndex);
+    const node = this.get(searchIndex);
     if (node !== undefined) {
       node.val = newValue;
       return node;
@@ -89,8 +89,6 @@ class SingleLinkedList {
 
   insertAtIndex(index, value) {
     const newNode = new Node(value);
-    let current = this.head;
-    let count = 0;
 
     if (index === 0) {
       newNode.next = this.head;
@@ -98,7 +96,7 @@ class SingleLinkedList {
       return this;
     }
 
-    let prevNode = this.get(index - 1);
+    const prevNode = this.get(index - 1);
     if (prevNode) {
       newNode.next = prevNode.next;
       prevNode.next = newNode;
@@ -114,10 +112,10 @@ class SingleLinkedList {
     if (index < 0 || index >= this.length) return undefined;
 
     if (index === 0) {
-      let removedNode = this.shift();
+      const removedNode = this.shift();
       return removedNode;
     } else if (index === this.length - 1) {
-      let removedPop = this.pop();
+      const removedPop = this.pop();
       return removedPop;
     }
 
@@ -137,9 +135,9 @@ class SingleLinkedList {
   }
 
   removeWithGet(index) {
-    let previousNode = this.get(index - 1);
+    const previousNode = this.get(index - 1);
     if (!previousNode) return undefined;
-    let nextNode = previousNode.next;
+    const nextNode = previousNode.next;
     previousNode.next = nextNode.next;
     this.length--;
     return this;
@@ -152,7 +150,7 @@ class SingleLinkedList {
     this.tail = this.head;
 
     while (currentNode) {
-      let next = currentNode.next;
+      const next = currentNode.next;
       currentNode.next = prev;
       prev = currentNode;
       currentNode = next;

@@ -1,10 +1,3 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-
 class SingleLinkedList {
   constructor() {
     this.head = null;
@@ -37,3 +30,6 @@ class SingleLinkedList {
     return current;
   }
 }
+
+const list = new SingleLinkedList();
+console.log(list);

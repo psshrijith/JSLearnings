@@ -1,5 +1,5 @@
 const a = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve('Data from a');
     }, 2000);

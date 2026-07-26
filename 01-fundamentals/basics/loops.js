@@ -9,7 +9,7 @@ for (const i in 'shrijith') {
   console.log(i);
 }
 
-for (let j of str) {
+for (const j of str) {
   console.log(j);
 }
 

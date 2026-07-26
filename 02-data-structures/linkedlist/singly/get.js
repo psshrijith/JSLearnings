@@ -12,3 +12,6 @@ class SingleLinkedList {
     }
   }
 }
+
+const list = new SingleLinkedList();
+console.log(list);

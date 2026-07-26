@@ -15,6 +15,7 @@ function FindAllDuplicates(nums) {
 }
 
 console.log(FindAllDuplicates([4, 3, 2, 7, 8, 2, 3, 1]));
+console.log(FindAllDuplicates1([4, 3, 2, 7, 8, 2, 3, 1]));
 
 //Solution 2
 

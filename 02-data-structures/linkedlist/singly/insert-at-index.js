@@ -1,8 +1,6 @@
 class SingleLinkedList {
   insertAtIndex(index, value) {
     const newNode = new Node(value);
-    let current = this.head;
-    let count = 0;
 
     if (index === 0) {
       newNode.next = this.head;
@@ -10,12 +8,15 @@ class SingleLinkedList {
       return;
     }
 
+    let current = this.head;
+    let count = 0;
+
     while (current) {
       current = current.next;
       count++;
 
       if (count === index - 1) {
-        let nextNode = current.next;
+        const nextNode = current.next;
 
         current.next = newNode;
         newNode.next = nextNode;
@@ -24,3 +25,6 @@ class SingleLinkedList {
     }
   }
 }
+
+const list = new SingleLinkedList();
+console.log(list);

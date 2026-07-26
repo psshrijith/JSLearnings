@@ -23,7 +23,9 @@ function boilWater(callback) {
 }
 
 startCoffeeMachine(function (coffeeMachineStatus) {
+  console.log(coffeeMachineStatus);
   grindCoffeeBeans(function (groundCoffee) {
+    console.log(groundCoffee);
     boilWater(function (boiledWater) {
       console.log(boiledWater);
     });

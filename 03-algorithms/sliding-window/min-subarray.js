@@ -18,3 +18,5 @@ function minSubArrayLen(nums, target) {
 
   return minLength === Infinity ? 0 : minLength;
 }
+
+console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7));

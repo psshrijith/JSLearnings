@@ -16,8 +16,8 @@ export default [
     },
     rules: {
       'no-undef': 'error',
-      'no-unused-vars': 'warn',
-      'prefer-const': 'warn',
+      'no-unused-vars': 'error',
+      'prefer-const': 'error',
       eqeqeq: ['error', 'always'],
       'no-var': 'error',
       'no-implicit-globals': 'error',

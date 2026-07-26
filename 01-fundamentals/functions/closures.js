@@ -1,5 +1,5 @@
 function func1(msg) {
-  let message = msg;
+  const message = msg;
 
   function func2() {
     console.log(message);
