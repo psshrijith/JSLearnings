@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ProgressRing } from './ProgressRing';
 
 function percent(doneCount, totalCount) {
@@ -6,17 +8,35 @@ function percent(doneCount, totalCount) {
   return Math.round((doneCount / totalCount) * 100);
 }
 
-export function Sidebar({ sections, doneCount, totalCount, doneIds, currentPath }) {
+export function Sidebar({
+  sections,
+  doneCount,
+  totalCount,
+  doneIds,
+  currentPath,
+  onNavigate,
+  onClose,
+}) {
   return (
     <div className="flex h-full flex-col gap-4 overflow-hidden rounded-[24px] border border-white/10 bg-slate-900/80 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-      <div className="flex items-center justify-between gap-4 rounded-[18px] border border-white/10 bg-slate-950/40 p-4">
+      <div className="flex items-start justify-between gap-4 rounded-[18px] border border-white/10 bg-slate-950/40 p-4">
         <div>
           <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-400">
             Learning Path
           </p>
           <h1 className="m-0 text-[clamp(1.5rem,2vw,2.3rem)] leading-none">Build in public.</h1>
         </div>
-        <ProgressRing value={percent(doneCount, totalCount)} label={`${doneCount}/${totalCount}`} />
+        <div className="flex items-start gap-3">
+          <ProgressRing value={percent(doneCount, totalCount)} label={`${doneCount}/${totalCount}`} />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-50 transition hover:bg-white/10 xl:hidden"
+            aria-label="Close contents"
+            onClick={onClose}
+          >
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>
       </div>
 
       <div className="grid gap-4 overflow-y-auto pr-1">
@@ -47,6 +67,7 @@ export function Sidebar({ sections, doneCount, totalCount, doneIds, currentPath 
                     ].join(' ')}
                     to={lesson.route}
                     key={lesson.id}
+                    onClick={onNavigate}
                   >
                     <span
                       className={[
