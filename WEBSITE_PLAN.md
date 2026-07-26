@@ -51,8 +51,10 @@ You write a JS file as always. The site picks it up on the next deploy — no MD
 
 A small Docusaurus source plugin (~50 lines) will:
 1. Scan `01-fundamentals/**/*.js`, `02-data-structures/**/*.js`, `03-algorithms/**/*.js` at build time
-2. Auto-generate a page per file — title from filename, code from file contents
-3. Auto-update the sidebar with the correct section and order
+2. Also pick up section `README.md` files as landing pages for each top-level topic area
+3. Auto-generate a page per file using the full relative path as the stable page id and route
+4. Use the filename for the display title, but never for identity, so duplicate names in different folders do not collide
+5. Auto-update the sidebar with the correct section and order
 
 **Optional description:** Add a comment block at the top of any JS file to show explanatory text above the code:
 
@@ -64,6 +66,9 @@ function threeSum(nums) { ... }
 ```
 
 If no `DESCRIPTION` comment exists, the page just shows the code.
+
+Raw source files are treated as the source of truth, but the live runner only executes browser-safe snippets.
+If a file is written as a Node-style demo script, the page can still render the code and explanation, but the execution wrapper may need a small transform or a custom example block.
 
 ---
 
@@ -88,7 +93,7 @@ That's it. No MDX, no sidebar config, no manual steps.
 ## Progress Tracking
 
 - Each page has a **Mark Done** button
-- Clicking it saves that file's slug to `localStorage`
+- Clicking it saves that file's full relative path slug to `localStorage`
 - The sidebar shows ✓ next to completed topics
 - A progress bar at the bottom of the sidebar shows `X/Y done`
 - The homepage shows an overall progress ring
@@ -106,8 +111,9 @@ That's it. No MDX, no sidebar config, no manual steps.
 
 ### Topic Page (auto-generated per JS file)
 - Title (derived from filename, e.g. `longest-substring` → `Longest Substring`)
+- Stable route id and completion key derived from the full relative path, e.g. `03-algorithms/two-pointers/longest-substring`
 - Description text (from `// DESCRIPTION:` comment if present)
-- Live code editor (editable, runs in browser)
+- Live code editor for browser-safe examples
 - Output panel below the editor
 - Mark Done / Mark Undone button
 - Prev / Next navigation
@@ -146,11 +152,11 @@ jslearnings/
 
 - [ ] 1. Init Docusaurus inside `website/` folder
 - [ ] 2. Apply dark hacker theme (CSS overrides — dark bg, green/cyan accents)
-- [ ] 3. Write `js-source-plugin.js` — scans JS files, generates pages + sidebar
+- [ ] 3. Write `js-source-plugin.js` — scans JS files and README files, generates pages + sidebar, and uses path-based ids
 - [ ] 4. Build `ProgressButton` component (localStorage-backed Mark Done)
 - [ ] 5. Build homepage with progress ring
-- [ ] 6. Wire up `@docusaurus/theme-live-codeblock` for in-browser JS execution
-- [ ] 7. Add `deploy.yml` GitHub Action (optional — Vercel GitHub integration does this automatically)
+- [ ] 6. Wire up `@docusaurus/theme-live-codeblock` for browser-safe live examples, with a fallback for raw source files that cannot execute directly
+- [ ] 7. Add `deploy.yml` GitHub Action only if you want an extra CI check; Vercel GitHub integration can handle deploys without it
 - [ ] 8. Test build locally with `npm run start`
 
 **You do once:**
