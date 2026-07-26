@@ -84,7 +84,7 @@ class BinarySearchTree{
         return visited;
     }
 
-    dfsInorder(target){
+    dfsInorder(){
         let visited = [];
         let stack = [];
         let current = this.root;
@@ -111,4 +111,5 @@ binarySearchTree.insert(120);
 binarySearchTree.insert(80);
 binarySearchTree.insert(70);
 binarySearchTree.insert(60);
-console.log(binarySearchTree.bfs(80));
+binarySearchTree.bfs(80);
+console.log(binarySearchTree.dfsInorder());
