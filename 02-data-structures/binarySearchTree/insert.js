@@ -86,22 +86,21 @@ class BinarySearchTree{
 
     dfsInorder(target){
         let visited = [];
-        let leftNode, rightNode = null;
+        let stack = [];
+        let current = this.root;
 
-        if(this.root.left) {
-            leftNode = this.root.left;
-        }
-        if(this.root.right){
-            rightNode = this.root.right;
-        }
+        while(current || stack.length){
 
-        while(leftNode || rightNode){
-            visited.push(leftNode);
-            visited.push(rightNode);
-            leftNode = leftNode.left;
-            rightNode = rightNode.right;
-        }
+            while(current){
+                stack.push(current);
+                current = current.left;
+            }
         
+            current = stack.pop();
+            visited.push(current.val);
+            current = current.right;
+        }
+        return visited;
     }
 }
 
