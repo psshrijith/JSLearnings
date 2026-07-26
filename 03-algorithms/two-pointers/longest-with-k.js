@@ -1,19 +1,18 @@
-const value = "eceba";
-const k=2;
+const value = 'eceba';
+const k = 2;
 const map = new Map();
 let maxLength = 0;
 let left = 0;
-const string = "";
+const string = '';
 
-for(let i=0;i<value.length;i++){
-    map.set(value[i], (map.get(value[i]) || 0) + 1);
-    while(map.size > k){
-        map.set(value[left], map.get(value[left]) - 1);
-        if(map.get(value[left]) === 0){
-            map.delete(value[left]);
-        }
-        left++;
+for (let i = 0; i < value.length; i++) {
+  map.set(value[i], (map.get(value[i]) || 0) + 1);
+  while (map.size > k) {
+    map.set(value[left], map.get(value[left]) - 1);
+    if (map.get(value[left]) === 0) {
+      map.delete(value[left]);
     }
-        maxLength = Math.max(maxLength, i - left + 1);
-        
-    }
+    left++;
+  }
+  maxLength = Math.max(maxLength, i - left + 1);
+}

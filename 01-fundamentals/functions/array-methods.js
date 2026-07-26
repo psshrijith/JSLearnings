@@ -1,9 +1,7 @@
-const ar = [5, "JS"]
+const ar = [5, 'JS'];
 
 console.log(typeof ar);
 
-
-for(const i of ar){
-    console.log(i);
+for (const i of ar) {
+  console.log(i);
 }
-

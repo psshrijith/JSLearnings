@@ -1,20 +1,19 @@
-
-class uncommonCharacters{
-method (str1,str2){
-   const res = [];
-   for (let i = 0; i < str1.length; i++){
-      if (!(str2.includes(str1[i]))){
-         res.push(str1[i])
+class uncommonCharacters {
+  method(str1, str2) {
+    const res = [];
+    for (let i = 0; i < str1.length; i++) {
+      if (!str2.includes(str1[i])) {
+        res.push(str1[i]);
       }
-   }
-   for (let i = 0; i < str2.length; i++){
-      if (!(str1.includes(str2[i]))){
-         res.push(str2[i])
+    }
+    for (let i = 0; i < str2.length; i++) {
+      if (!str1.includes(str2[i])) {
+        res.push(str2[i]);
       }
-   }
-   return res.join("");
-}
+    }
+    return res.join('');
+  }
 }
 
-const obj = new uncommonCharacters()
-obj.method("geeksforgeeks","geeksquiz")
+const obj = new uncommonCharacters();
+obj.method('geeksforgeeks', 'geeksquiz');

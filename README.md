@@ -5,6 +5,7 @@ A comprehensive collection of JavaScript exercises, algorithms, and projects org
 ## 📚 Learning Path
 
 ### 🚀 Getting Started
+
 1. **Start with Fundamentals** - Learn the basics of JavaScript
 2. **Master Data Structures** - Understand arrays, objects, and more
 3. **Practice Algorithms** - Learn problem-solving techniques
@@ -48,6 +49,7 @@ jslearnings/
 ## 🎯 Topics Covered
 
 ### 01-fundamentals
+
 - **Variables & Data Types** - Understanding JavaScript's type system
 - **Functions** - First-class functions, closures, scope
 - **Objects & OOP** - Object creation, prototypes, classes
@@ -55,23 +57,27 @@ jslearnings/
 - **Async JavaScript** - Callbacks, promises, async/await
 
 ### 02-data-structures
+
 - **Array Operations** - Manipulation, searching, sorting
 - **Data Structure Implementations** - Custom data structures
 - **Algorithm Analysis** - Time and space complexity
 
 ### 03-algorithms
+
 - **Two Pointers** - Efficient array/string processing
 - **Sliding Window** - Subarray/subsequence problems
 - **Recursion** - Divide and conquer, backtracking
 - **Sorting** - Various sorting algorithms
 
 ### 04-string-manipulation
+
 - **Basic Operations** - Reversal, case conversion, trimming
 - **Pattern Matching** - Substring search, anagrams
 - **String Analysis** - Character counting, validation
 - **Advanced Problems** - Complex string transformations
 
 ### 05-math-problems
+
 - **Number Theory** - Primes, factors, divisibility
 - **Numerical Algorithms** - Mathematical computations
 - **Problem Solving** - Mathematical reasoning
@@ -79,6 +85,7 @@ jslearnings/
 ## 🚀 How to Use
 
 ### Running the Code
+
 Each JavaScript file can be run independently:
 
 ```bash
@@ -93,6 +100,7 @@ node 01-fundamentals/HelloWorld.js
 ```
 
 ### Learning Approach
+
 1. **Sequential Learning** - Follow the numbered directories in order
 2. **Practice First** - Try solving problems before looking at solutions
 3. **Understand the Concepts** - Read the README in each directory
@@ -108,9 +116,9 @@ node 01-fundamentals/HelloWorld.js
 ## 📖 Learning Resources
 
 ### Recommended Order
+
 1. Complete all exercises in `01-fundamentals/`
 2. Move to `02-data-structures/` for array mastery
 3. Practice algorithmic patterns in `03-algorithms/`
 4. Apply string techniques in `04-string-manipulation/`
 5. Strengthen math skills in `05-math-problems/`
-

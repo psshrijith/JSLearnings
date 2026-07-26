@@ -1,9 +1,9 @@
-function hello(){
-    return "hello "
+function hello() {
+  return 'hello ';
 }
 
-function first(func, value){
-    return hello() + value+"how are you?"
+function first(func, value) {
+  return hello() + value + 'how are you?';
 }
 
-console.log(first(hello,"user! "))
+console.log(first(hello, 'user! '));

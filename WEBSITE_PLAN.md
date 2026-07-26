@@ -35,13 +35,13 @@ Convert this repo of plain JS files into a deployed, interactive learning site w
 
 ## Tech Stack
 
-| Layer        | Choice           | Why                                              |
-|--------------|------------------|--------------------------------------------------|
-| Framework    | Docusaurus v3    | MDX support, sidebar auto-gen, dark theme built-in |
-| Live editor  | `@docusaurus/theme-live-codeblock` | Runs JS in browser, no backend needed |
-| Styling      | Custom dark CSS  | Override Docusaurus defaults with hacker theme   |
-| Progress     | localStorage     | No login needed, persists across sessions        |
-| Hosting      | Vercel           | Free, auto-deploys on every `git push`           |
+| Layer       | Choice                             | Why                                                |
+| ----------- | ---------------------------------- | -------------------------------------------------- |
+| Framework   | Docusaurus v3                      | MDX support, sidebar auto-gen, dark theme built-in |
+| Live editor | `@docusaurus/theme-live-codeblock` | Runs JS in browser, no backend needed              |
+| Styling     | Custom dark CSS                    | Override Docusaurus defaults with hacker theme     |
+| Progress    | localStorage                       | No login needed, persists across sessions          |
+| Hosting     | Vercel                             | Free, auto-deploys on every `git push`             |
 
 ---
 
@@ -50,6 +50,7 @@ Convert this repo of plain JS files into a deployed, interactive learning site w
 You write a JS file as always. The site picks it up on the next deploy — no MDX files to maintain.
 
 A small Docusaurus source plugin (~50 lines) will:
+
 1. Scan `01-fundamentals/**/*.js`, `02-data-structures/**/*.js`, `03-algorithms/**/*.js` at build time
 2. Also pick up section `README.md` files as landing pages for each top-level topic area
 3. Auto-generate a page per file using the full relative path as the stable page id and route
@@ -104,12 +105,14 @@ That's it. No MDX, no sidebar config, no manual steps.
 ## Pages
 
 ### Homepage
+
 - Site title and tagline
 - Overall progress ring (e.g. 12/50 completed)
 - Quick-jump cards to each section (Fundamentals / Data Structures / Algorithms)
 - "Continue where you left off" link to the last visited page
 
 ### Topic Page (auto-generated per JS file)
+
 - Title (derived from filename, e.g. `longest-substring` → `Longest Substring`)
 - Stable route id and completion key derived from the full relative path, e.g. `03-algorithms/two-pointers/longest-substring`
 - Description text (from `// DESCRIPTION:` comment if present)
@@ -160,6 +163,7 @@ jslearnings/
 - [ ] 8. Test build locally with `npm run start`
 
 **You do once:**
+
 - [ ] Connect repo to Vercel (vercel.com → New Project → import this repo)
 - [ ] Run `vercel` once locally to get the public URL
 
@@ -176,11 +180,11 @@ jslearnings/
 
 ## Estimated Build Time
 
-| Task                        | Time     |
-|-----------------------------|----------|
-| Docusaurus init + dark theme | ~20 min  |
-| Auto-source plugin           | ~20 min  |
-| Progress tracking component  | ~15 min  |
-| Homepage                     | ~15 min  |
-| Wiring everything together   | ~20 min  |
+| Task                         | Time        |
+| ---------------------------- | ----------- |
+| Docusaurus init + dark theme | ~20 min     |
+| Auto-source plugin           | ~20 min     |
+| Progress tracking component  | ~15 min     |
+| Homepage                     | ~15 min     |
+| Wiring everything together   | ~20 min     |
 | **Total**                    | **~90 min** |

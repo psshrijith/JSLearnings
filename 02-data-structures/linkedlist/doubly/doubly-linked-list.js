@@ -1,148 +1,145 @@
-class Node{
-    constructor(val){
-        this.val = val;
-        this.next = null;
-        this.prev = null;
-    }
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+    this.prev = null;
+  }
 }
 
 class DoublyLinkedList {
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(val) {
+    const newNode = new Node(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
     }
 
-    push(val){
-        const newNode = new Node(val);
+    this.length++;
+    return this;
+  }
 
-        if(!this.head){
-            this.head = newNode;
-            this.tail = newNode;
-        } else {
-            this.tail.next = newNode;
-            newNode.prev = this.tail;
-            this.tail = newNode;
-        }
+  pop() {
+    if (!this.head) return undefined;
 
-        this.length++;
-        return this;
+    let removedNode = this.tail;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = removedNode.prev;
+      this.tail.next = null;
+      removedNode.prev = null;
     }
+    this.length--;
+    return removedNode;
+  }
 
-    pop(){
-        if(!this.head) return undefined;
+  shift() {
+    let removedNode = this.head;
+    let nextNode = removedNode.next;
 
-        let removedNode = this.tail;
+    nextNode.prev = null;
+    this.head = nextNode;
+    removedNode.next = null;
 
-        if(this.length === 1){
-            this.head = null;
-            this.tail = null;
-        }
-        else{
-            this.tail = removedNode.prev;
-            this.tail.next = null;
-            removedNode.prev = null;
-        }
-        this.length--;
-        return removedNode;
+    this.length--;
+    return removedNode;
+  }
+
+  unshift(val) {
+    const newNode = new Node(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      let oldHead = this.head;
+      newNode.next = this.head;
+      oldHead.prev = newNode;
+      this.head = newNode;
+      this.length++;
     }
+    return this;
+  }
 
-    shift(){
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
 
-        let removedNode = this.head;
-        let nextNode = removedNode.next;
-
-        nextNode.prev = null;
-        this.head = nextNode;
-        removedNode.next = null;
-
-        this.length--;
-        return removedNode;
+    let current = this.head;
+    let count = 0;
+    while (current) {
+      if (count === index) {
+        return current;
+      }
+      current = current.next;
+      count++;
     }
+    return null;
+  }
 
-    unshift(val){
-        const newNode = new Node(val);
-
-        if(!this.head){
-            this.head = newNode;
-            this.tail = newNode;
-        } else{
-            let oldHead = this.head;
-            newNode.next = this.head;
-            oldHead.prev = newNode;
-            this.head = newNode;
-            this.length++;
-        }
-        return this;
+  set(index, val) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.val = val;
+      return foundNode;
     }
+    return null;
+  }
 
-    get(index){
-        if(index < 0 || index >= this.length) return null;
-
-        let current = this.head;
-        let count = 0;
-        while(current){
-            if(count === index){
-                return current;
-            }
-            current = current.next;
-            count++;
-        }
-        return null;
+  insert(index, val) {
+    if (index < 0 || index > this.length) return;
+    if (index === 0) {
+      return this.unshift(val);
     }
-
-    set(index, val){
-        let foundNode = this.get(index);
-        if(foundNode){
-            foundNode.val = val;
-            return foundNode;
-        }
-        return null;
+    if (index === this.length) {
+      return this.push(val);
     }
-
-    insert(index, val){
-        if (index < 0 || index > this.length) return;
-        if (index === 0) {
-            return this.unshift(val);
-        }
-        if (index === this.length) {
-            return this.push(val);
-        }
-        let newNode = new Node(val);
-        let foundNode = this.get(index);
-        let previousNode = foundNode.prev;
-        if(foundNode){
-            newNode.prev = previousNode
-            newNode.next = foundNode
-        }
-        previousNode.next = newNode;
-        foundNode.prev = newNode;
-        this.length++;
-        return this;
+    let newNode = new Node(val);
+    let foundNode = this.get(index);
+    let previousNode = foundNode.prev;
+    if (foundNode) {
+      newNode.prev = previousNode;
+      newNode.next = foundNode;
     }
+    previousNode.next = newNode;
+    foundNode.prev = newNode;
+    this.length++;
+    return this;
+  }
 
-    remove(index){
-        if (index < 0 || index > this.length-1) return;
-        if (index === 0){
-            return this.shift();
-        }
-        if (index === this.length-1){
-            return this.pop();
-        }
-        const removedNode = this.get(index);
-        const previousNode = removedNode.prev;
-        const nextNode = removedNode.next;
-
-        previousNode.next = removedNode.next;
-        nextNode.prev = previousNode;
-
-        removedNode.prev = null;
-        removedNode.next = null;
-        this.length--;
-        return this;
+  remove(index) {
+    if (index < 0 || index > this.length - 1) return;
+    if (index === 0) {
+      return this.shift();
     }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+    const removedNode = this.get(index);
+    const previousNode = removedNode.prev;
+    const nextNode = removedNode.next;
+
+    previousNode.next = removedNode.next;
+    nextNode.prev = previousNode;
+
+    removedNode.prev = null;
+    removedNode.next = null;
+    this.length--;
+    return this;
+  }
 }
-
 
 const list = new DoublyLinkedList();
 list.push(10);

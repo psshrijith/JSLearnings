@@ -1,10 +1,8 @@
-class SingleLinkedList{
-    constructor(){
-        this.head = null;
-        this.tail = null;
-    }
+class SingleLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
 
-    removeWithGet(){
-        
-    }
+  removeWithGet() {}
 }

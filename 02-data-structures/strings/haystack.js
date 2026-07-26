@@ -1,4 +1,4 @@
-const str = "sadbutsad";
-const str1 = "sad";
+const str = 'sadbutsad';
+const str1 = 'sad';
 
-console.log(str.indexOf(str1))
+console.log(str.indexOf(str1));

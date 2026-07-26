@@ -1,30 +1,29 @@
 function findRotatedIndex(arr, num) {
-    let left = 0;
-    let right = arr.length - 1;
+  let left = 0;
+  let right = arr.length - 1;
 
-    while(left<=right){
-        const mid = Math.floor((left+right)/2);
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
 
-        if(arr[mid] === num) {
-            return mid;
-        }
-
-        if(arr[left] <= arr[mid]) {
-            if(num>=arr[left] && num<arr[mid]) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
-        else {
-            if(num>arr[mid] && num<=arr[right]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-    }
-    return -1;
+    if (arr[mid] === num) {
+      return mid;
     }
 
-console.log(findRotatedIndex([3,4,1,2],4));
+    if (arr[left] <= arr[mid]) {
+      if (num >= arr[left] && num < arr[mid]) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    } else {
+      if (num > arr[mid] && num <= arr[right]) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  }
+  return -1;
+}
+
+console.log(findRotatedIndex([3, 4, 1, 2], 4));

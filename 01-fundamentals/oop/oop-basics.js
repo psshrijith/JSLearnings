@@ -1,14 +1,14 @@
-class A{
-    a  = 90;
+class A {
+  a = 90;
 }
 
-class B extends A{
-    mymethod(){
-        console.log("Hello world")
-    }
+class B extends A {
+  mymethod() {
+    console.log('Hello world');
+  }
 }
 
 const obj = new A();
-const obj1 = new B()
+const obj1 = new B();
 obj1.mymethod();
-console.log(obj.a)
+console.log(obj.a);

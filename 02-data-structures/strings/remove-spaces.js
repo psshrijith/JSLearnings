@@ -1,8 +1,8 @@
-const testString = "This is a sentence".split(" ");
-let finalString = "";
+const testString = 'This is a sentence'.split(' ');
+let finalString = '';
 
-for(const i of testString){
-    finalString += i;
+for (const i of testString) {
+  finalString += i;
 }
 
-console.log(finalString)
+console.log(finalString);

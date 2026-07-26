@@ -1,22 +1,22 @@
 // N = 8
 // output = 2, 3, 5, 7;
 
-function findPrime(N){
-    const arr = [];
-    let count = 0;
-    for(let i=2;i<N;i++){
-        count = 0;
-        for(let j=2;j<=i;j++){
-            if(i%j===0){
-                count++;
-            }
-        }
-        if(count===1) arr.push(i);
+function findPrime(N) {
+  const arr = [];
+  let count = 0;
+  for (let i = 2; i < N; i++) {
+    count = 0;
+    for (let j = 2; j <= i; j++) {
+      if (i % j === 0) {
+        count++;
+      }
     }
+    if (count === 1) arr.push(i);
+  }
 
-    for(const i in arr){
-        console.log(arr[i])
-    }
+  for (const i in arr) {
+    console.log(arr[i]);
+  }
 }
 
 findPrime(8);

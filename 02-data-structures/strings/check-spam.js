@@ -1,8 +1,8 @@
-function checkSpam(str){
-    if(str.toLowerCase().includes("xxxxx") || str.toLowerCase().includes("viagra")){
-        return true;
-    }
-    return false;
+function checkSpam(str) {
+  if (str.toLowerCase().includes('xxxxx') || str.toLowerCase().includes('viagra')) {
+    return true;
+  }
+  return false;
 }
 
-console.log(checkSpam("buy xXXXX now"))
+console.log(checkSpam('buy xXXXX now'));
