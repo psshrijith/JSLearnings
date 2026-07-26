@@ -94,38 +94,45 @@ function sortLessonItems(items) {
   return items;
 }
 
-function addNavigation(items) {
-  return items.map((item, index) => {
-    const prev = items[index - 1];
-    const next = items[index + 1];
+function getNavigationItem(item) {
+  if (!item) {
+    return null;
+  }
 
-    return {
-      ...item,
-      prev: prev
-        ? {
-            id: prev.id,
-            title: prev.title,
-            route: prev.route,
-          }
-        : null,
-      next: next
-        ? {
-            id: next.id,
-            title: next.title,
-            route: next.route,
-          }
-        : null,
-    };
-  });
+  return {
+    id: item.id,
+    title: item.title,
+    route: item.route,
+  };
+}
+
+function addNavigation(items) {
+  return items.map((item, index) => ({
+    ...item,
+    prev: getNavigationItem(items[index - 1]),
+    next: getNavigationItem(items[index + 1]),
+  }));
+}
+
+function getLessonSummary(lesson) {
+  const { id, title, route, kind, sourcePath } = lesson;
+
+  return {
+    id,
+    title,
+    route,
+    kind,
+    sourcePath,
+  };
 }
 
 function groupLessonsBySection(lessons) {
   return SECTION_ORDER.map((sectionId) => {
     const sectionLessons = lessons.filter(
-      (lesson) => lesson.sectionId === sectionId
+      lesson => lesson.sectionId === sectionId
     );
 
-    if (sectionLessons.length === 0) {
+    if (!sectionLessons.length) {
       return null;
     }
 
@@ -134,15 +141,7 @@ function groupLessonsBySection(lessons) {
       title: getSectionLabel(sectionId),
       route: getSectionRoute(sectionId),
       count: sectionLessons.length,
-      lessons: sectionLessons.map(
-        ({ id, title, route, kind, sourcePath }) => ({
-          id,
-          title,
-          route,
-          kind,
-          sourcePath,
-        })
-      ),
+      lessons: sectionLessons.map(getLessonSummary),
     };
   }).filter(Boolean);
 }
