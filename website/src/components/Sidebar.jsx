@@ -8,6 +8,158 @@ function percent(doneCount, totalCount) {
   return Math.round((doneCount / totalCount) * 100);
 }
 
+function labelize(value) {
+  const known = {
+    linkedlist: 'Linked List',
+    binarySearchTree: 'Binary Search Tree',
+    twoPointers: 'Two Pointers',
+    slidingWindow: 'Sliding Window',
+    divideAndConquer: 'Divide and Conquer',
+    frequencyCounter: 'Frequency Counter',
+  };
+
+  if (known[value]) return known[value];
+
+  return value
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[-_]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+function buildLessonTree(lessons) {
+  const root = [];
+
+  for (const lesson of lessons) {
+    const parts = lesson.sourcePath.split('/').slice(1, -1);
+
+    if (lesson.kind === 'section') {
+      root.unshift({
+        type: 'overview',
+        lesson,
+      });
+      continue;
+    }
+
+    let currentLevel = root;
+
+    parts.forEach((part, index) => {
+      const isLeaf = index === parts.length - 1;
+      let node = currentLevel.find(
+        (entry) => entry.type === 'folder' && entry.label === labelize(part),
+      );
+
+      if (!node) {
+        node = {
+          type: 'folder',
+          label: labelize(part),
+          children: [],
+        };
+        currentLevel.push(node);
+      }
+
+      if (isLeaf) {
+        node.children.push({
+          type: 'lesson',
+          lesson,
+        });
+      } else {
+        currentLevel = node.children;
+      }
+    });
+
+    if (parts.length === 0) {
+      currentLevel.push({
+        type: 'lesson',
+        lesson,
+      });
+    }
+  }
+
+  return root;
+}
+
+function LessonRow({ lesson, completed, active, onNavigate }) {
+  return (
+    <Link
+      className={[
+        'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm transition',
+        active
+          ? 'translate-x-px bg-emerald-400/10 text-slate-50'
+          : 'text-slate-400 hover:translate-x-px hover:bg-emerald-400/10 hover:text-slate-50',
+      ].join(' ')}
+      to={lesson.route}
+      onClick={onNavigate}
+    >
+      <span
+        className={[
+          'grid h-[18px] w-[18px] place-items-center rounded-full border text-[11px]',
+          completed ? 'border-emerald-400/50 text-emerald-400' : 'border-white/10 text-slate-400',
+        ].join(' ')}
+      >
+        {completed ? '✓' : '•'}
+      </span>
+      <span className="leading-tight">{lesson.title}</span>
+    </Link>
+  );
+}
+
+function FolderTree({ nodes, doneIds, currentPath, onNavigate }) {
+  return (
+    <div className="grid gap-2">
+      {nodes.map((node) => {
+        if (node.type === 'overview') {
+          const completed = doneIds.includes(node.lesson.id);
+          const active = currentPath === node.lesson.route;
+          return (
+            <LessonRow
+              key={node.lesson.id}
+              lesson={node.lesson}
+              completed={completed}
+              active={active}
+              onNavigate={onNavigate}
+            />
+          );
+        }
+
+        if (node.type === 'lesson') {
+          const completed = doneIds.includes(node.lesson.id);
+          const active = currentPath === node.lesson.route;
+          return (
+            <LessonRow
+              key={node.lesson.id}
+              lesson={node.lesson}
+              completed={completed}
+              active={active}
+              onNavigate={onNavigate}
+            />
+          );
+        }
+
+        return (
+          <div key={node.label} className="grid gap-2 pl-1">
+            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+              {node.label}
+            </div>
+            <div className="grid gap-2 border-l border-white/5 pl-3">
+              <FolderTree
+                nodes={node.children}
+                doneIds={doneIds}
+                currentPath={currentPath}
+                onNavigate={onNavigate}
+              />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function Sidebar({
   sections,
   doneCount,
@@ -53,37 +205,12 @@ export function Sidebar({
                 {section.doneCount}/{section.count}
               </span>
             </div>
-            <div className="grid gap-1.5">
-              {section.lessons.map((lesson) => {
-                const completed = doneIds.includes(lesson.id);
-                const active = currentPath === lesson.route;
-                return (
-                  <Link
-                    className={[
-                      'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm transition',
-                      active
-                        ? 'translate-x-px bg-emerald-400/10 text-slate-50'
-                        : 'text-slate-400 hover:translate-x-px hover:bg-emerald-400/10 hover:text-slate-50',
-                    ].join(' ')}
-                    to={lesson.route}
-                    key={lesson.id}
-                    onClick={onNavigate}
-                  >
-                    <span
-                      className={[
-                        'grid h-[18px] w-[18px] place-items-center rounded-full border text-[11px]',
-                        completed
-                          ? 'border-emerald-400/50 text-emerald-400'
-                          : 'border-white/10 text-slate-400',
-                      ].join(' ')}
-                    >
-                      {completed ? '✓' : '•'}
-                    </span>
-                    <span className="leading-tight">{lesson.title}</span>
-                  </Link>
-                );
-              })}
-            </div>
+            <FolderTree
+              nodes={buildLessonTree(section.lessons)}
+              doneIds={doneIds}
+              currentPath={currentPath}
+              onNavigate={onNavigate}
+            />
           </section>
         ))}
       </div>
