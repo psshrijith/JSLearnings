@@ -11,7 +11,7 @@ export function HomePage() {
   const { data, doneIds, lastVisited } = useAppContext();
   const totalCount = data.lessons.length;
   const doneCount = doneIds.length;
-  const continueHref = lastVisited || data.sections[0]?.route || '/';
+  const continueHref = lastVisited || data.sections[0]?.route || '/home';
 
   return (
     <div className="grid gap-4">
@@ -21,11 +21,11 @@ export function HomePage() {
             Dark theme learning dashboard
           </p>
           <h1 className="m-0 text-[clamp(2rem,4vw,3.3rem)] leading-[0.95]">
-            Practice JavaScript from the files you already wrote.
+            Build your JavaScript skills through practice.
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-400">
-            Every lesson in this repo becomes a live page with editable code, progress
-            tracking, and a clean section sidebar.
+            Explore guided lessons with editable code, progress tracking, and a clean section
+            sidebar.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
