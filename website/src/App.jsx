@@ -8,30 +8,7 @@ import { HomePage } from './components/HomePage';
 import { LandingPage } from './components/LandingPage';
 import { LessonPage } from './components/LessonPage';
 
-const STORAGE_DONE_KEY = 'jslearnings:done-ids';
-const STORAGE_LAST_KEY = 'jslearnings:last-visited';
-
 const AppContext = createContext(null);
-
-function readArray(key) {
-  if (typeof window === 'undefined') return [];
-  try {
-    const value = window.localStorage.getItem(key);
-    if (!value) return [];
-    const parsed = JSON.parse(value);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeArray(key, values) {
-  try {
-    window.localStorage.setItem(key, JSON.stringify(values));
-  } catch {
-    // Ignore storage failures in private mode or restricted browsers.
-  }
-}
 
 export function useAppContext() {
   const context = useContext(AppContext);
@@ -43,23 +20,9 @@ export function useAppContext() {
 
 function AppShell() {
   const location = useLocation();
-  const [doneIds, setDoneIds] = useState(() => readArray(STORAGE_DONE_KEY));
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [lastVisited, setLastVisited] = useState(() => {
-    if (typeof window === 'undefined') return '';
-    return window.localStorage.getItem(STORAGE_LAST_KEY) || '';
-  });
 
   useEffect(() => {
-    writeArray(STORAGE_DONE_KEY, doneIds);
-  }, [doneIds]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (location.pathname !== '/') {
-      window.localStorage.setItem(STORAGE_LAST_KEY, location.pathname);
-      setLastVisited(location.pathname);
-    }
     setIsSidebarOpen(false);
   }, [location.pathname]);
 
@@ -73,39 +36,16 @@ function AppShell() {
     [],
   );
 
-  const sections = useMemo(
-    () =>
-      data.sections.map((section) => ({
-        ...section,
-        doneCount: section.lessons.filter((lesson) => doneIds.includes(lesson.id)).length,
-      })),
-    [doneIds],
-  );
-
-  const totalCount = data.lessons.length;
-  const doneCount = doneIds.length;
-
   const value = {
     data,
-    doneIds,
-    setDoneIds,
-    lastVisited,
     lessonsByRoute,
     lessonsById,
-  };
-
-  const markDone = (id) => {
-    setDoneIds((current) => (current.includes(id) ? current : [...current, id]));
-  };
-
-  const markUndone = (id) => {
-    setDoneIds((current) => current.filter((entry) => entry !== id));
   };
 
   const isLandingPage = location.pathname === '/';
 
   return (
-    <AppContext.Provider value={{ ...value, markDone, markUndone }}>
+    <AppContext.Provider value={value}>
       {isLandingPage ? (
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -129,10 +69,7 @@ function AppShell() {
             ].join(' ')}
           >
             <Sidebar
-              sections={sections}
-              doneCount={doneCount}
-              totalCount={totalCount}
-              doneIds={doneIds}
+              sections={data.sections}
               currentPath={location.pathname}
               onNavigate={() => setIsSidebarOpen(false)}
               onClose={() => setIsSidebarOpen(false)}
@@ -160,10 +97,6 @@ function AppShell() {
                     </small>
                   </span>
                 </Link>
-              </div>
-              <div className="flex items-center gap-4 text-sm text-slate-400">
-                <span>{doneCount} done</span>
-                <span>{totalCount - doneCount} left</span>
               </div>
             </header>
             <div className="min-w-0">

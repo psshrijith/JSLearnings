@@ -1,17 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../App';
-import { ProgressRing } from './ProgressRing';
-
-function percent(doneCount, totalCount) {
-  if (totalCount === 0) return 0;
-  return Math.round((doneCount / totalCount) * 100);
-}
 
 export function HomePage() {
-  const { data, doneIds, lastVisited } = useAppContext();
-  const totalCount = data.lessons.length;
-  const doneCount = doneIds.length;
-  const continueHref = lastVisited || data.sections[0]?.route || '/home';
+  const { data } = useAppContext();
 
   return (
     <div className="grid gap-4">
@@ -24,30 +15,8 @@ export function HomePage() {
             Build your JavaScript skills through practice.
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-400">
-            Explore guided lessons with editable code, progress tracking, and a clean section
-            sidebar.
+            Explore guided lessons with editable code and a clean section sidebar.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 to-sky-400 px-4 font-semibold text-slate-950 transition hover:opacity-95"
-              to={continueHref}
-            >
-              Continue where you left off
-            </Link>
-            <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 font-semibold text-slate-100 transition hover:bg-white/10"
-              to={data.sections[0]?.route || '/'}
-            >
-              Start at the beginning
-            </Link>
-          </div>
-        </div>
-        <div className="grid justify-items-center gap-4 text-center">
-          <ProgressRing value={percent(doneCount, totalCount)} label={`${doneCount}/${totalCount}`} />
-          <div>
-            <h2 className="m-0 text-2xl font-semibold">{doneCount} completed</h2>
-            <p className="mt-1 text-sm text-slate-400">{totalCount - doneCount} lessons remaining</p>
-          </div>
         </div>
       </section>
 

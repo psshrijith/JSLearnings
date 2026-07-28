@@ -122,7 +122,7 @@ function SectionMarkdown({ content }) {
 
 export function LessonPage() {
   const location = useLocation();
-  const { data, doneIds, markDone, markUndone } = useAppContext();
+  const { data } = useAppContext();
 
   const route = location.pathname;
   const lesson = useMemo(
@@ -144,8 +144,6 @@ export function LessonPage() {
     );
   }
 
-  const isDone = doneIds.includes(lesson.id);
-
   return (
     <div className="grid gap-4">
       <section className="flex flex-col justify-between gap-4 rounded-[24px] border border-white/10 bg-slate-900/80 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl md:flex-row md:items-center">
@@ -155,15 +153,6 @@ export function LessonPage() {
           </p>
           <h1 className="m-0 text-[clamp(1.7rem,3vw,2.6rem)] leading-none">{lesson.title}</h1>
           <p className="mt-3 text-sm text-slate-400">{lesson.sourcePath}</p>
-        </div>
-        <div>
-          <button
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 font-semibold text-slate-100 transition hover:bg-white/10"
-            type="button"
-            onClick={() => (isDone ? markUndone(lesson.id) : markDone(lesson.id))}
-          >
-            {isDone ? 'Mark Undone' : 'Mark Done'}
-          </button>
         </div>
       </section>
 

@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ProgressRing } from './ProgressRing';
-
-function percent(doneCount, totalCount) {
-  if (totalCount === 0) return 0;
-  return Math.round((doneCount / totalCount) * 100);
-}
 
 function labelize(value) {
   const known = {
@@ -83,7 +77,7 @@ function buildLessonTree(lessons) {
   return root;
 }
 
-function LessonRow({ lesson, completed, active, onNavigate }) {
+function LessonRow({ lesson, active, onNavigate }) {
   return (
     <Link
       className={[
@@ -95,31 +89,24 @@ function LessonRow({ lesson, completed, active, onNavigate }) {
       to={lesson.route}
       onClick={onNavigate}
     >
-      <span
-        className={[
-          'grid h-[18px] w-[18px] place-items-center rounded-full border text-[11px]',
-          completed ? 'border-emerald-400/50 text-emerald-400' : 'border-white/10 text-slate-400',
-        ].join(' ')}
-      >
-        {completed ? '✓' : '•'}
+      <span className="grid h-[18px] w-[18px] place-items-center rounded-full border border-white/10 text-[11px] text-slate-400">
+        •
       </span>
       <span className="leading-tight">{lesson.title}</span>
     </Link>
   );
 }
 
-function FolderTree({ nodes, doneIds, currentPath, onNavigate }) {
+function FolderTree({ nodes, currentPath, onNavigate }) {
   return (
     <div className="grid gap-2">
       {nodes.map((node) => {
         if (node.type === 'overview') {
-          const completed = doneIds.includes(node.lesson.id);
           const active = currentPath === node.lesson.route;
           return (
             <LessonRow
               key={node.lesson.id}
               lesson={node.lesson}
-              completed={completed}
               active={active}
               onNavigate={onNavigate}
             />
@@ -127,13 +114,11 @@ function FolderTree({ nodes, doneIds, currentPath, onNavigate }) {
         }
 
         if (node.type === 'lesson') {
-          const completed = doneIds.includes(node.lesson.id);
           const active = currentPath === node.lesson.route;
           return (
             <LessonRow
               key={node.lesson.id}
               lesson={node.lesson}
-              completed={completed}
               active={active}
               onNavigate={onNavigate}
             />
@@ -148,7 +133,6 @@ function FolderTree({ nodes, doneIds, currentPath, onNavigate }) {
             <div className="grid gap-2 border-l border-white/5 pl-3">
               <FolderTree
                 nodes={node.children}
-                doneIds={doneIds}
                 currentPath={currentPath}
                 onNavigate={onNavigate}
               />
@@ -162,9 +146,6 @@ function FolderTree({ nodes, doneIds, currentPath, onNavigate }) {
 
 export function Sidebar({
   sections,
-  doneCount,
-  totalCount,
-  doneIds,
   currentPath,
   onNavigate,
   onClose,
@@ -179,7 +160,6 @@ export function Sidebar({
           <h1 className="m-0 text-[clamp(1.5rem,2vw,2.3rem)] leading-none">Build in public.</h1>
         </div>
         <div className="flex items-start gap-3">
-          <ProgressRing value={percent(doneCount, totalCount)} label={`${doneCount}/${totalCount}`} />
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-50 transition hover:bg-white/10 xl:hidden"
@@ -201,13 +181,10 @@ export function Sidebar({
               <h2 className="m-0 text-sm font-semibold tracking-wide text-slate-100">
                 {section.title}
               </h2>
-              <span className="text-xs text-slate-400">
-                {section.doneCount}/{section.count}
-              </span>
+              <span className="text-xs text-slate-400">{section.count} pages</span>
             </div>
             <FolderTree
               nodes={buildLessonTree(section.lessons)}
-              doneIds={doneIds}
               currentPath={currentPath}
               onNavigate={onNavigate}
             />
