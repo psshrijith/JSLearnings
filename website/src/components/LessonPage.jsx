@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAppContext } from '../App';
+import { useAppContext } from '../appContext';
 import { MarkdownRenderer } from './MarkdownRenderer';
 
 function formatValue(value) {

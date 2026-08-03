@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppContext } from '../App';
+import { useAppContext } from '../appContext';
 
 export function HomePage() {
   const { data } = useAppContext();
