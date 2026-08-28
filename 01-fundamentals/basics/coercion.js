@@ -5,6 +5,5 @@ const y = true;
 console.log('y' + y);
 
 console.log(!'false');
-
 console.log(6 <= 6);
 
