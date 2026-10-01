@@ -768,12 +768,3 @@ Uses surrounding this
 * **Arrow functions have lexical `this`**, meaning they use `this` from their surrounding context.
 * JavaScript could theoretically have made all functions use lexical `this`, but normal functions were designed to allow `this` to change depending on the caller.
 * Arrow functions provide a way to explicitly say: **"Don't create a new `this`; use the surrounding one."**
-
-## Related Concepts
-
-After understanding this, learn:
-
-1. **Temporal Dead Zone (TDZ)** — why `let` and `const` cannot be accessed before initialization.
-2. **Execution Context** — how the creation phase and execution phase work.
-3. **`call`, `apply`, and `bind`** — how we can explicitly control `this` for normal functions.
-4. **Closures** — how functions remember and access their surrounding lexical environment.
