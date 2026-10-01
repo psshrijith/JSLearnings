@@ -753,6 +753,208 @@ Uses surrounding this
 ```
 
 ---
+# 19. Diagram
+
+# JavaScript Mental Model
+
+```text
+                         JAVASCRIPT
+                              │
+              ┌───────────────┴───────────────┐
+              │                               │
+            SCOPE                            `this`
+              │                               │
+       "Where can I                  "What does `this`
+        access this?"                 refer to?"
+              │                               │
+       ┌──────┴──────┐                ┌───────┴────────┐
+       │             │                │                │
+   Lexical Scope   Closure      Normal Function   Arrow Function
+       │             │                │                │
+       │             │          Has its own       Does NOT have
+       │             │             `this`             own `this`
+       │             │                │                │
+       │             │          `this` depends    Gets `this` from
+       │             │          on how function   surrounding
+       │             │             is called       lexical context
+       │             │
+       │             └──────────────────┐
+       │                                │
+       │                     Inner function remembers
+       │                     variables from outer scope
+       │
+       └─────────────────────────────────────────────┐
+                                                     │
+                                          Based on where
+                                          code is written
+```
+
+## The simplest way to remember it
+
+```text
+┌───────────────────────────────────────────────┐
+│                    SCOPE                      │
+│                                               │
+│  "Where can I access this variable?"         │
+│                                               │
+│  Determined by WHERE the code is written.     │
+└───────────────────────────────────────────────┘
+
+
+┌───────────────────────────────────────────────┐
+│                    `this`                     │
+│                                               │
+│  "What does `this` refer to?"                 │
+│                                               │
+│  Normal function → depends on HOW called      │
+│  Arrow function  → comes from WHERE defined   │
+└───────────────────────────────────────────────┘
+```
+
+## Normal Function vs Arrow Function
+
+```text
+              FUNCTION
+                  │
+          ┌───────┴────────┐
+          │                │
+     Normal Function    Arrow Function
+          │                │
+          │                │
+     Own `this`        No own `this`
+          │                │
+          │                │
+     ┌────┴────┐           │
+     │         │           │
+  How it    call site      │
+  is called     │           │
+     │          │           │
+     └────┬─────┘           │
+          │                 │
+          ▼                 ▼
+       `this`          Surrounding
+       value            `this`
+                           │
+                           ▼
+                     Lexical `this`
+```
+
+## Example
+
+```js
+const person = {
+  name: "Shrijith",
+
+  normalFunction: function () {
+    console.log(this.name);
+  },
+
+  arrowFunction: () => {
+    console.log(this.name);
+  }
+};
+
+person.normalFunction();
+// `this` → person
+
+person.arrowFunction();
+// `this` → surrounding lexical context
+```
+
+## Callback Example
+
+```js
+const person = {
+  name: "Shrijith",
+
+  greet() {
+    setTimeout(() => {
+      console.log(this.name);
+    }, 1000);
+  }
+};
+```
+
+Think of it like this:
+
+```text
+person.greet()
+      │
+      ▼
+  `this = person`
+      │
+      ▼
+  setTimeout()
+      │
+      ▼
+  arrow function
+      │
+      │  "I don't create my own `this`"
+      │
+      ▼
+  uses surrounding `this`
+      │
+      ▼
+  `this = person`
+```
+
+## Hoisting Fits Separately
+
+```text
+                 JAVASCRIPT
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+      Scope         `this`       Hoisting
+        │             │             │
+        │             │             │
+     Where can     What does     What is
+     variables     `this`        available
+     be accessed?  refer to?     during setup?
+        │             │             │
+        │             │             │
+   Lexical scope  Normal vs     Function
+                  Arrow         declarations
+                                are available
+                                before execution
+```
+
+### Final mental model
+
+```text
+SCOPE
+  ↓
+"Where can I access variables?"
+  ↓
+Lexical
+  ↓
+Based on WHERE code is written
+
+
+`this`
+  ↓
+"What does `this` refer to?"
+  ↓
+Normal function
+  → HOW it is called
+
+Arrow function
+  → WHERE it is written
+  → inherits surrounding `this`
+
+
+HOISTING
+  ↓
+"What is set up before execution?"
+  ↓
+Function declarations
+  → available during setup
+
+const / let / arrow functions
+  → variable exists but isn't initialized
+    until execution reaches the declaration
+```
+
 
 # Key Takeaways
 
