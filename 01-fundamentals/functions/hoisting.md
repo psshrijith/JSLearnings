@@ -92,7 +92,7 @@ const sayHello = function () {}
 sayHello → function
 ```
 
-The function value is assigned only when JavaScript reaches this line:
+The function value is assigned only when JavaScript reaches:
 
 ```js
 const sayHello = function () {};
@@ -101,8 +101,6 @@ const sayHello = function () {};
 ---
 
 # 3. The Important Difference
-
-Compare:
 
 ### Function declaration
 
@@ -211,7 +209,7 @@ is an oversimplification.
 
 A more accurate statement is:
 
-> The variable binding is created during the creation phase, but the function value is assigned during execution.
+> The variable binding exists during the creation phase, but the function value is assigned during execution.
 
 ---
 
@@ -334,7 +332,7 @@ const greet = function () {};
 
 # 9. Arrow Functions Are Also Function Expressions
 
-Arrow functions behave the same way in this situation:
+Arrow functions are function expressions when assigned to a variable:
 
 ```js
 const greet = () => {
@@ -356,7 +354,349 @@ Because the arrow function is assigned to `greet` during execution.
 
 ---
 
-# 10. Easy Mental Model
+# 10. Important: Lexical Scope vs Lexical `this`
+
+The word **lexical** can be confusing because it is used in two related but different ideas.
+
+### Lexical scope
+
+Lexical scope answers:
+
+> **"Where can this variable be accessed?"**
+
+For example:
+
+```js
+const name = "Shrijith";
+
+function greet() {
+  console.log(name);
+}
+```
+
+`greet()` can access `name` because `name` is in its surrounding lexical scope.
+
+Normal functions have **lexical scope**.
+
+---
+
+### Lexical `this`
+
+Lexical `this` answers:
+
+> **"Where does this function get its `this` from?"**
+
+This is where arrow functions are different.
+
+Normal functions:
+
+```text
+this → determined by how the function is called
+```
+
+Arrow functions:
+
+```text
+this → taken from the surrounding context
+```
+
+So:
+
+```text
+Normal function:
+
+variables → lexical scope
+this      → call-site
+
+
+Arrow function:
+
+variables → lexical scope
+this      → surrounding context
+```
+
+---
+
+# 11. Normal Function `this`
+
+Consider:
+
+```js
+const user = {
+  name: "Shrijith",
+
+  greet: function () {
+    console.log(this.name);
+  }
+};
+
+user.greet();
+```
+
+When we call:
+
+```js
+user.greet();
+```
+
+the function is called as a method of `user`.
+
+Therefore:
+
+```text
+this → user
+```
+
+Output:
+
+```text
+Shrijith
+```
+
+The important point is that a normal function has its **own `this`**, and that `this` is determined by how the function is called.
+
+---
+
+# 12. The Same Function Can Have Different `this`
+
+Consider:
+
+```js
+const user1 = {
+  name: "Shrijith",
+
+  greet: function () {
+    console.log(this.name);
+  }
+};
+
+const user2 = {
+  name: "Rahul"
+};
+
+user2.greet = user1.greet;
+
+user1.greet(); // Shrijith
+user2.greet(); // Rahul
+```
+
+The same function is being used:
+
+```js
+user1.greet
+```
+
+and:
+
+```js
+user2.greet
+```
+
+But `this` changes based on the caller:
+
+```text
+user1.greet()
+      ↓
+this = user1
+
+
+user2.greet()
+      ↓
+this = user2
+```
+
+This is an important reason normal functions have dynamic `this`.
+
+---
+
+# 13. Arrow Functions Have Lexical `this`
+
+Arrow functions do not create their own `this`.
+
+Instead, they use `this` from the surrounding context.
+
+Example:
+
+```js
+const user = {
+  name: "Shrijith",
+
+  greet() {
+    setTimeout(() => {
+      console.log(this.name);
+    }, 1000);
+  }
+};
+```
+
+When we call:
+
+```js
+user.greet();
+```
+
+the `greet` method has:
+
+```text
+this → user
+```
+
+The arrow function does not create a new `this`.
+
+Instead:
+
+```text
+greet's this
+     ↓
+arrow function
+     ↓
+uses surrounding this
+     ↓
+user
+```
+
+Therefore:
+
+```text
+Shrijith
+```
+
+---
+
+# 14. Could JavaScript Have Made Normal Functions Use Lexical `this`?
+
+**Yes.**
+
+JavaScript could theoretically have designed all functions so that `this` was lexical.
+
+But normal functions were designed to allow `this` to depend on **how the function is called**.
+
+For example:
+
+```js
+const user1 = {
+  name: "Shrijith",
+  greet: function () {
+    console.log(this.name);
+  }
+};
+
+const user2 = {
+  name: "Rahul",
+  greet: user1.greet
+};
+
+user1.greet(); // Shrijith
+user2.greet(); // Rahul
+```
+
+The same function can work with different objects:
+
+```text
+user1.greet()
+      ↓
+this = user1
+
+
+user2.greet()
+      ↓
+this = user2
+```
+
+If normal functions had lexical `this`, the surrounding context would determine `this` instead.
+
+That would remove this useful behavior.
+
+---
+
+# 15. Why Were Arrow Functions Introduced?
+
+Arrow functions provide the opposite behavior:
+
+> "I don't want my own `this`. I want to use the surrounding `this`."
+
+This is particularly useful with callbacks.
+
+Without an arrow function:
+
+```js
+const user = {
+  name: "Shrijith",
+
+  greet() {
+    setTimeout(function () {
+      console.log(this.name);
+    }, 1000);
+  }
+};
+```
+
+The callback is a normal function and has its own `this`.
+
+With an arrow function:
+
+```js
+const user = {
+  name: "Shrijith",
+
+  greet() {
+    setTimeout(() => {
+      console.log(this.name);
+    }, 1000);
+  }
+};
+```
+
+The arrow function uses the surrounding `this`.
+
+---
+
+# 16. Normal Function vs Arrow Function
+
+| Behavior                              | Normal Function         | Arrow Function |
+| ------------------------------------- | ----------------------- | -------------- |
+| Lexical variable scope                | ✅ Yes                   | ✅ Yes          |
+| Creates its own `this`                | ✅ Yes                   | ❌ No           |
+| `this` determined by call             | ✅ Yes                   | ❌ No           |
+| `this` comes from surrounding context | ❌                       | ✅              |
+| Can be used as constructor            | ✅ Yes                   | ❌ No           |
+| Has `arguments` object                | ✅ Yes                   | ❌ No           |
+| Function declaration hoisting         | ✅ Function declarations | N/A            |
+
+---
+
+# 17. The Most Important Distinction
+
+Don't think:
+
+> "Normal functions are not lexical."
+
+That's incorrect.
+
+Normal functions **are lexically scoped**.
+
+The difference is specifically about `this`.
+
+```text
+Normal function
+
+Lexical scope       → surrounding lexical scope
+this                → determined by how it is called
+
+
+Arrow function
+
+Lexical scope       → surrounding lexical scope
+this                → surrounding this
+```
+
+### One sentence to remember
+
+> **Normal functions have lexical variable scope, but their `this` is determined by how they are called. Arrow functions have lexical variable scope and lexical `this`.**
+
+---
+
+# 18. Easy Mental Model
 
 When you see:
 
@@ -371,7 +711,7 @@ Function declaration
         ↓
 Function created during setup
         ↓
-Available before execution reaches it
+Can be called before its position
 ```
 
 When you see:
@@ -392,43 +732,25 @@ Function assigned during execution
 Available after assignment
 ```
 
----
-
-# 11. Example
+When you see:
 
 ```js
-console.log(add(2, 3));
-
-function add(a, b) {
-  return a + b;
-}
+const foo = () => {};
 ```
 
-Output:
+think:
 
 ```text
-5
+Arrow function
+        ↓
+Function expression
+        ↓
+Assigned during execution
+        ↓
+Does NOT create its own this
+        ↓
+Uses surrounding this
 ```
-
-Because `add` is a function declaration.
-
-Now:
-
-```js
-console.log(add(2, 3));
-
-const add = function (a, b) {
-  return a + b;
-};
-```
-
-Output:
-
-```text
-ReferenceError
-```
-
-Because `add` is a `const` binding that has not been initialized when the first line executes.
 
 ---
 
@@ -440,4 +762,18 @@ Because `add` is a `const` binding that has not been initialized when the first 
 * `const` and `let` variables are created but remain **uninitialized** until their declaration is executed.
 * `var` variables are initialized with `undefined`.
 * Arrow functions are also function expressions.
-* Saying "function expressions are not hoisted" is a simplified explanation. More precisely, the **binding exists, but the function value is not assigned until execution reaches the assignment**.
+* Saying "function expressions are not hoisted" is a simplified explanation.
+* **Normal functions have lexical variable scope.**
+* **Normal functions have dynamic `this`**, meaning `this` depends on how they are called.
+* **Arrow functions have lexical `this`**, meaning they use `this` from their surrounding context.
+* JavaScript could theoretically have made all functions use lexical `this`, but normal functions were designed to allow `this` to change depending on the caller.
+* Arrow functions provide a way to explicitly say: **"Don't create a new `this`; use the surrounding one."**
+
+## Related Concepts
+
+After understanding this, learn:
+
+1. **Temporal Dead Zone (TDZ)** — why `let` and `const` cannot be accessed before initialization.
+2. **Execution Context** — how the creation phase and execution phase work.
+3. **`call`, `apply`, and `bind`** — how we can explicitly control `this` for normal functions.
+4. **Closures** — how functions remember and access their surrounding lexical environment.
