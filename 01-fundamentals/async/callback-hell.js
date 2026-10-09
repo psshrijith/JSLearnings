@@ -31,3 +31,4 @@ startCoffeeMachine(function (coffeeMachineStatus) {
     });
   });
 });
+
