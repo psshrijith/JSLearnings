@@ -23,3 +23,4 @@ Promise.allSettled([b(), a()]).then((results) => {
     }
   });
 });
+
